@@ -2,44 +2,43 @@
 
 > Backend for W-bees POC
 
-## About
-
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
 ## Getting Started
-
-Getting up and running is as easy as 1, 2, 3.
 
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
 2. Install your dependencies
 
     ```
-    cd path/to/w-bees
-    npm install
+    npm run prepare
     ```
 
-3. Start your app
+3. Copy your database details to the .env file as example provided below
+    ```
+    DB_HOST=localhost
+    DB_PORT=3306    
+    DB_USER=root1
+    DB_PASS=root
+    DB_NAME=bees
+    ```
+4. Start your app in dev mode
 
     ```
-    npm start
+    npm run dev
     ```
+    Both backend and frontend will run simultaneously. Backend on PORT=3030 & Fronend on PORT=4200
+    To run seperately use the following commands:
+        1. To run backend: `npm run start:server`
+        2. To run frontend: `npm run start:client`
 
-## Testing
+5. Building the application
+    ```
+    npm run build
+    ```
+    and post build run the application with `npm start`. Both applications accessible on `localhost:3030`
 
-Simply run `npm test` and all your tests in the `test/` directory will be run.
+## Known Issues
 
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
-```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers help                           # Show all commands
-```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
+If you get a permission error then run this command:
+    ```
+    chmod +x scripts/*
+    ```
