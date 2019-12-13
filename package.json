@@ -25,7 +25,7 @@
   "scripts": {
     "test": "yarn run eslint && yarn run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "prepare": "./scripts/configure",
+    "setup": "./scripts/configure",
     "start:server": "nodemon src/",
     "start:client": "npm start --prefix=client",
     "dev": "concurrently \"npm run start:client\" \"npm run start:server\"",

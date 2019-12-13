@@ -9,7 +9,7 @@
 2. Install your dependencies
 
     ```
-    npm run prepare
+    npm run setup
     ```
 
 3. Copy your database details to the .env file as example provided below
