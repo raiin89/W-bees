@@ -31,7 +31,7 @@
     "dev": "concurrently \"npm run start:client\" \"npm run start:server\"",
     "build": "./scripts/build",
     "start": "node src/",
-    "mocha": "mocha test/ --recursive --exit",
+    "mocha": "mocha test/ --recursive --exit"
   },
   "dependencies": {
     "@feathersjs/authentication": "^4.3.7",
