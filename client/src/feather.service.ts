@@ -5,6 +5,7 @@ import { environment } from 'environments/environment';
 const socket = io(environment.API);
 const client = feathers()
     .configure(feathers.socketio(socket))
+    .configure(feathers.hooks())
     .configure(feathers.authentication({
         storage: window.localStorage
     }));

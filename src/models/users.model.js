@@ -17,13 +17,11 @@ module.exports = function (app) {
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
     zipcode: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
     }
   }, {
     timeStamps: true,

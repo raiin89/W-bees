@@ -53,8 +53,19 @@
 
             </mat-menu>
 
+            <div class="toolbar-separator" fxHide fxShow.gt-xs></div>
+
+            <!-- Chat menu on header,  ngIf="LeftNavBar_Hidden" -->
+            <button mat-icon-button fxHide.gt-md
+                    class="chat-panel-toggle-button"
+                    (click)="toggleSidebarOpen('chatPanel')"
+                    aria-label="Toggle chat panel">
+                <mat-icon class="secondary-text">chat</mat-icon>
+            </button>
+
             <div class="toolbar-separator" *ngIf="!hiddenNavbar && rightNavbar" fxHide fxShow.gt-xs></div>
 
+            <!-- Chat Sidemenu right -->
             <button mat-icon-button class="navbar-toggle-button"
                     *ngIf="!hiddenNavbar && rightNavbar" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
                 <mat-icon class="secondary-text">menu</mat-icon>
