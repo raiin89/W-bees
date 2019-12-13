@@ -1,34 +1,45 @@
-# Fuse - Angular
+# w-bees
 
-Material Design Admin Template with Angular 8 and Angular Material
+> Backend for W-bees POC
 
-## The Community
+## About
 
-Share your ideas, discuss Fuse and help each other.
+This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
-[Click here](http://fusetheme.com/community) to see our Community page.
+## Getting Started
 
-## Development server
+Getting up and running is as easy as 1, 2, 3.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
+2. Install your dependencies
 
-## Code scaffolding
+    ```
+    cd path/to/w-bees
+    npm install
+    ```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Start your app
 
-## Build
+    ```
+    npm start
+    ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Testing
 
-## Running unit tests
+Simply run `npm test` and all your tests in the `test/` directory will be run.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Scaffolding
 
-## Running end-to-end tests
+Feathers has a powerful command line interface. Here are a few things it can do:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+$ npm install -g @feathersjs/cli          # Install Feathers CLI
 
-## Further help
+$ feathers generate service               # Generate a new Service
+$ feathers generate hook                  # Generate a new Hook
+$ feathers help                           # Show all commands
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Help
 
+For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
