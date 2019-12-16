@@ -5,26 +5,25 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const users = sequelizeClient.define('users', {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
+  const jobs = sequelizeClient.define('jobs', {
+    title: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    username: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    zipcode: {
-      type: DataTypes.STRING,
+    price: {
+      type: DataTypes.FLOAT,
       allowNull: false
+    },
+    status: {
+      type: DataTypes.ENUM('open', 'closed'),
+      default: 'open'
     }
   }, {
-    timeStamps: true,
+    timestamps: true,
     paranoid: true,
     hooks: {
       beforeCount(options) {
@@ -34,14 +33,18 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
+  jobs.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    users.belongsTo(models.user_roles, {
-      foreignKey: "userRoleId",
-      onDelete: "CASCADE"
+    jobs.belongsTo(models.users, {
+      foreignKey: 'createdBy',
+      onDelete: 'CASCADE'
+    });
+    jobs.belongsTo(models.categories, {
+      foreignKey: 'categoryId',
+      onDelete: 'CASCADE'
     });
   };
 
-  return users;
+  return jobs;
 };

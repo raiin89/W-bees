@@ -5,27 +5,20 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const users = sequelizeClient.define('users', {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
+  const bids = sequelizeClient.define('bids', {
+    description: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    username: {
-      type: DataTypes.STRING,
+    price: {
+      type: DataTypes.FLOAT,
       allowNull: false
     },
-    zipcode: {
-      type: DataTypes.STRING,
-      allowNull: false
+    status: {
+      type: DataTypes.ENUM('accepted', 'declined', 'pending'),
+      default: 'pending'
     }
   }, {
-    timeStamps: true,
-    paranoid: true,
     hooks: {
       beforeCount(options) {
         options.raw = true;
@@ -34,14 +27,18 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
+  bids.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    users.belongsTo(models.user_roles, {
-      foreignKey: "userRoleId",
-      onDelete: "CASCADE"
+    bids.belongsTo(models.users, {
+      foreignKey: 'createdBy',
+      onDelete: 'CASCADE'
+    });
+    bids.belongsTo(models.jobs, {
+      foreignKey: 'jobId',
+      onDelete: 'CASCADE'
     });
   };
 
-  return users;
+  return bids;
 };

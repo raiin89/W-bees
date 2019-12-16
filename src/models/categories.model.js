@@ -5,27 +5,14 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const users = sequelizeClient.define('users', {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    zipcode: {
+  const categories = sequelizeClient.define('categories', {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     }
   }, {
-    timeStamps: true,
     paranoid: true,
+    timestamps: true,
     hooks: {
       beforeCount(options) {
         options.raw = true;
@@ -34,14 +21,14 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
+  categories.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    users.belongsTo(models.user_roles, {
-      foreignKey: "userRoleId",
-      onDelete: "CASCADE"
+    categories.belongsTo(models.users, {
+      foreignKey: 'createdBy',
+      onDelete: 'CASCADE'
     });
   };
 
-  return users;
+  return categories;
 };

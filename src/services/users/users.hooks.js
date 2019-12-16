@@ -4,12 +4,16 @@ const {
   hashPassword, protect
 } = require('@feathersjs/authentication-local').hooks;
 
+const addUserRoleToUsers = require('../../hooks/add-user-role-to-users');
+
+const getUserRoles = require('../../hooks/get-user-roles');
+
 module.exports = {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ ],
-    create: [ hashPassword('password') ],
+    create: [hashPassword('password'), addUserRoleToUsers()],
     update: [ hashPassword('password'),  authenticate('jwt') ],
     patch: [ hashPassword('password'),  authenticate('jwt') ],
     remove: [ authenticate('jwt') ]
@@ -22,7 +26,7 @@ module.exports = {
       protect('password')
     ],
     find: [],
-    get: [],
+    get: [getUserRoles()],
     create: [],
     update: [],
     patch: [],
