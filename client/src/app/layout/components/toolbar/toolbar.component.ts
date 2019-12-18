@@ -27,6 +27,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     navigation: any;
     selectedLanguage: any;
     userStatusOptions: any[];
+    userData: any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -102,6 +103,12 @@ export class ToolbarComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        // my code to get user details from local storage
+
+        this.userData = JSON.parse(localStorage.getItem('user-details'));
+        console.log('user-details', this.userData.username);
+
+
         // Subscribe to the config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))

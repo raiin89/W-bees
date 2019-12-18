@@ -63,6 +63,7 @@ export class RegisterComponent implements OnInit, OnDestroy
             username       : ['', Validators.required],
             email          : ['', [Validators.required, Validators.email]],
             zipcode        : ['', Validators.required],
+            role           : ['', Validators.required],
             password       : ['', Validators.required],
             passwordConfirm: ['', [Validators.required, confirmPasswordValidator]]
         });

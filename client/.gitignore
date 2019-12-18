@@ -40,3 +40,7 @@ Thumbs.db
 
 yarn.lock
 package-lock.json
+
+# angulardoc.json
+
+.angulardoc.json

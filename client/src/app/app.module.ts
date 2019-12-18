@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegisterComponent } from './main/auth/register/register.component';
+import { MatSelectModule } from '@angular/material/select';
 
 const appRoutes: Routes = [
     {
@@ -68,6 +69,7 @@ const appRoutes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatSnackBarModule,
+        MatSelectModule,
 
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
