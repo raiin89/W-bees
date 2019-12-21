@@ -22,6 +22,14 @@ module.exports = function (app) {
     zipcode: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    securityQuestion: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    securityAnswer: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     timeStamps: true,
