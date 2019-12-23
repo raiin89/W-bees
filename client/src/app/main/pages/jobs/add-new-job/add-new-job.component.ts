@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fuseAnimations } from '@fuse/animations';
 
-import { FuseConfigService } from '@fuse/services/config.service';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import client from 'feather.service';
+import { SnakBarService } from '../../../../services/snak-bar.service';
 
 @Component({
   selector: 'app-add-new-job',
   templateUrl: './add-new-job.component.html',
-  styleUrls: ['./add-new-job.component.scss']
+  styleUrls: ['./add-new-job.component.scss'],
+  animations   : fuseAnimations
 })
 export class AddNewJobComponent implements OnInit {
 
@@ -16,36 +17,29 @@ export class AddNewJobComponent implements OnInit {
 
   constructor(
       private formBuilder: FormBuilder,
-  ) {
-    // this._fuseConfigService.config = {
-    //     layout: {
-    //         navbar   : {
-    //             hidden: true
-    //         },
-    //         toolbar  : {
-    //             hidden: true
-    //         },
-    //         footer   : {
-    //             hidden: true
-    //         },
-    //         sidepanel: {
-    //             hidden: true
-    //         }
-    //     }
-    // };
-  }
+      private snakbar: SnakBarService
+  ) { }
 
   ngOnInit(): void {
     this.jobsForm = this.formBuilder.group({
-        title               : ['', Validators.required],
-        description         : ['', Validators.required],
-        price               : ['', Validators.required],
-        categoryId          : ['', Validators.required]
+        title               :   ['', Validators.required],
+        categoryId          :   ['', Validators.required],
+        description         :   ['', Validators.required],
+        price               :   ['', Validators.required]
     });
   }
 
   postNewJob = (job) => {
     console.log('job', job);
+    this.snakbar.success('You will able to post job soon.');
+    // client.service('jobs').create({
+    //     ...job
+    // })
+    // .then(res => {
+    //     console.log('response of create job', job);
+    // }, err => {
+    //     console.log('err', err);
+    // });
   }
 
 }

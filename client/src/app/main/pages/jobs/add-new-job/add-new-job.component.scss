@@ -10,14 +10,15 @@
         #jobPost-form-wrapper {
             flex: 1 0 auto;
             padding: 32px;
+            text-align: -webkit-center;
 
             @include media-breakpoint('xs') {
                 padding: 16px;
             }
 
             #jobPost-form {
-                width: 384px;
-                max-width: 384px;
+                width: 100%;
+                max-width: 484px;
                 padding: 32px;
                 text-align: center;
                 @include mat-elevation(16);
@@ -108,30 +109,6 @@
                         &:after {
                             left: 100%;
                         }
-                    }
-                }
-
-                button {
-
-                    &.google,
-                    &.facebook {
-                        width: 192px;
-                        text-transform: none;
-                        color: #FFFFFF;
-                        font-size: 13px;
-                    }
-
-                    @include media-breakpoint('xs') {
-                        width: 80%;
-                    }
-
-                    &.google {
-                        background-color: #D73D32;
-                        margin-bottom: 8px;
-                    }
-
-                    &.facebook {
-                        background-color: rgb(63, 92, 154);
                     }
                 }
             }

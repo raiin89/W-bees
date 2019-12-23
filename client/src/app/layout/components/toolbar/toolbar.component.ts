@@ -106,7 +106,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // my code to get user details from local storage
         if (localStorage.getItem('user-details')){
             this.userData = JSON.parse(localStorage.getItem('user-details'));
-            console.log('user-details', this.userData.username);
+            // console.log('user-details', this.userData.username);
         }
 
 

@@ -20,7 +20,7 @@ module.exports = function (app) {
     },
     status: {
       type: DataTypes.ENUM('open', 'closed'),
-      default: 'open'
+      defaultValue: 'open'
     }
   }, {
     timestamps: true,

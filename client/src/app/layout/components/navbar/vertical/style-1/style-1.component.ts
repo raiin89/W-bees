@@ -96,7 +96,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 
         if (localStorage.getItem('user-details')){
             this.userData = JSON.parse(localStorage.getItem('user-details'));
-            console.log('user-details', this.userData);
         }
 
         this._router.events
