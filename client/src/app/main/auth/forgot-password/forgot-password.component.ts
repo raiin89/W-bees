@@ -1,34 +1,40 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Subject, from } from 'rxjs';
-import { takeUntil } from 'rxjs/internal/operators';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, ValidationErrors, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
+
 import client from 'feather.service';
 import { Router } from '@angular/router';
 
 import { SnakBarService } from '../../../services/snak-bar.service';
 
 @Component({
-    selector     : 'register',
-    templateUrl  : './register.component.html',
-    styleUrls    : ['./register.component.scss'],
+    selector     : 'forgot-password',
+    templateUrl  : './forgot-password.component.html',
+    styleUrls    : ['./forgot-password.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class RegisterComponent implements OnInit, OnDestroy
+export class ForgotPasswordComponent implements OnInit
 {
-    registerForm: FormGroup;
+    forgotPasswordForm: FormGroup;
+    newPasswordForm: FormGroup;
+    openResetForm = false;
+    requestResult = {};
+    requestId: any;
 
-    // Private
-    private _unsubscribeAll: Subject<any>;
-
+    /**
+     * Constructor
+     *
+     * @param {FuseConfigService} _fuseConfigService
+     * @param {FormBuilder} _formBuilder
+     */
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         private router: Router,
-        private snakBarService: SnakBarService
+        private snakbar: SnakBarService
     )
     {
         // Configure the layout
@@ -48,9 +54,6 @@ export class RegisterComponent implements OnInit, OnDestroy
                 }
             }
         };
-
-        // Set the private defaults
-        this._unsubscribeAll = new Subject();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -62,47 +65,54 @@ export class RegisterComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this.registerForm = this._formBuilder.group({
-            username            :   ['', Validators.required],
-            email               :   ['', [Validators.required, Validators.email]],
-            zipcode             :   ['', Validators.required],
-            role                :   ['', Validators.required],
+        this.forgotPasswordForm = this._formBuilder.group({
+            email: ['', [Validators.required, Validators.email]],
             securityQuestion    :   ['', Validators.required],
-            securityAnswer      :   ['', Validators.required],
-            password            :   ['', Validators.required],
-            passwordConfirm     :   ['', [Validators.required, confirmPasswordValidator]]
+            securityAnswer      :   ['', Validators.required]
         });
 
-        // Update the validity of the 'passwordConfirm' field
-        // when the 'password' field changes
-        this.registerForm.get('password').valueChanges
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(() => {
-                this.registerForm.get('passwordConfirm').updateValueAndValidity();
-            });
+        this.newPasswordForm = this._formBuilder.group({
+            newPassword: ['', Validators.required],
+            confirmPassword: ['', [Validators.required, confirmPasswordValidator]]
+        });
     }
 
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void
-    {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
-    }
-
-    submitRegisterForm(registerFormData): void {
-        client.service('users').create({
-            ...registerFormData
+    submitforgotPasswordForm(data): void {
+        client.service('users').find({
+            query: {
+                email: data.email,
+                securityQuestion: data.securityQuestion,
+                securityAnswer: data.securityAnswer
+            }
         }).then(res => {
-            this.snakBarService.success('Congratulations!!!, You are registered successfully.');
+            this.requestResult = res[0];
+            if (this.requestResult !== undefined){
+                this.requestId = this.requestResult['id'];
+                this.openResetForm = true;
+                this.snakbar.success('You can reset your password.');
+            }else{
+                this.snakbar.error('Something is not right. Please verify your details.');
+            }
+        }, err => {
+            this.snakbar.error(err.message);
+        });
+    }
+
+    setNewPassword(newPass): void {
+
+        client.service('users').patch(this.requestId, {
+            password: newPass.password
+        }).then(res => {
+            this.openResetForm = true;
+            this.snakbar.success('Your password is changed successfully.');
             setTimeout(() => { this.router.navigate(['/login']); }, 2000);
         }, err => {
-            this.snakBarService.error(err.message);
+            this.snakbar.error(err.message);
         });
+
     }
 }
+
 
 /**
  * Confirm password validator

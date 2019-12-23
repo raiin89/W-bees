@@ -11,11 +11,11 @@ const getUserRoles = require('../../hooks/get-user-roles');
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
+    find: [],
     get: [ ],
     create: [hashPassword('password'), addUserRoleToUsers()],
-    update: [ hashPassword('password'),  authenticate('jwt') ],
-    patch: [ hashPassword('password'),  authenticate('jwt') ],
+    update: [ hashPassword('password'), authenticate('jwt') ],
+    patch: [ hashPassword('password') ],
     remove: [ authenticate('jwt') ]
   },
 
@@ -23,7 +23,8 @@ module.exports = {
     all: [
       // Make sure the password field is never sent to the client
       // Always must be the last hook
-      protect('password')
+      protect('password'),
+      protect('securityAnswer')
     ],
     find: [],
     get: [getUserRoles()],

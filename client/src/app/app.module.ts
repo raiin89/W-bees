@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegisterComponent } from './main/auth/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ForgotPasswordComponent } from './main/auth/forgot-password/forgot-password.component';
 
 const appRoutes: Routes = [
     {
@@ -40,8 +41,17 @@ const appRoutes: Routes = [
         component: RegisterComponent
     },
     {
+        path:  'forgot-password',
+        component: ForgotPasswordComponent
+    },
+    {
         path: 'dashboard',
         redirectTo: 'sample'
+    },
+    {
+        path: 'jobs',
+        // redirectTo: 'jobs'
+        loadChildren: './main/pages/jobs/jobs.module#JobsModule'
     },
     {
         path: '**',
@@ -53,8 +63,9 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent,
         LoginComponent,
-        RegisterComponent
-    ],
+        RegisterComponent,
+        ForgotPasswordComponent
+        ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

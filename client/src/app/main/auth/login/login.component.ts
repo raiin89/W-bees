@@ -6,6 +6,8 @@ import { fuseAnimations } from '@fuse/animations';
 import client from 'feather.service';
 import { Router } from '@angular/router';
 
+import { SnakBarService } from '../../../services/snak-bar.service';
+
 @Component({
     selector     : 'login',
     templateUrl  : './login.component.html',
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
-        private router: Router
+        private router: Router,
+        private snakbar: SnakBarService
     )
     {
         // Configure the layout
@@ -58,14 +61,12 @@ export class LoginComponent implements OnInit
     ngOnInit(): void
     {
         this.loginForm = this._formBuilder.group({
-            email   : ['test@gmail.com', [Validators.required, Validators.email]],
-            password: ['password', Validators.required]
+            email   : ['', [Validators.required, Validators.email]],
+            password: ['', Validators.required]
         });
     }
 
-    submitLoginForm(loginData) {
-
-        console.log('loginFormData: ', loginData);
+    submitLoginForm(loginData): void {
 
         client.authenticate({
             strategy: 'local',
@@ -73,8 +74,9 @@ export class LoginComponent implements OnInit
         }).then(res => {
             localStorage.setItem('user-details', JSON.stringify(res.user));
             this.router.navigate(['/dashboard']);
+            this.snakbar.success('You logged in successfully.');
         }, err => {
-            console.log('Invalid credentials', err);
+            this.snakbar.error(err.message);
         });
     }
 }
