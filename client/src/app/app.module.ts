@@ -27,6 +27,7 @@ import { RegisterComponent } from './main/auth/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ForgotPasswordComponent } from './main/auth/forgot-password/forgot-password.component';
 import { VerifyComponent } from './main/auth/verify/verify.component';
+import { ResetComponent } from './main/auth/reset/reset.component';
 
 const appRoutes: Routes = [
     {
@@ -44,6 +45,10 @@ const appRoutes: Routes = [
     {
         path: 'verify',
         component: VerifyComponent
+    },
+    {
+        path: 'reset',
+        component: ResetComponent
     },
     {
         path:  'forgot-password',
@@ -82,7 +87,8 @@ const appRoutes: Routes = [
         LoginComponent,
         RegisterComponent,
         ForgotPasswordComponent,
-        VerifyComponent
+        VerifyComponent,
+        ResetComponent
         ],
     imports: [
         BrowserModule,

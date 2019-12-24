@@ -4,6 +4,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import client from 'feather.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SnakBarService } from '../../../services/snak-bar.service';
 
 @Component({
   selector: 'app-verify',
@@ -19,6 +20,7 @@ export class VerifyComponent implements OnInit {
     private _fuseConfigService: FuseConfigService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private snakBar: SnakBarService
   ) {
     this._fuseConfigService.config = {
         layout: {
@@ -44,6 +46,18 @@ export class VerifyComponent implements OnInit {
    }
 
   ngOnInit(): void {
+      console.log(this.token);
+      client.service('authmanagement').create({
+        action: 'verifySignupLong',
+        value: this.token
+      })
+      .then(res => {
+        console.log(this.token, ' authmanagement res :', res);
+        this.snakBar.success('Your accoount is verified successfully!!!');
+      }, err => {
+        console.log('authmanagement err', err);
+        this.snakBar.success(err);
+      });
   }
 
 }

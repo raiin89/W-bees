@@ -7,25 +7,26 @@
         background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat;
         background-size: cover;
 
-        #login-form-wrapper {
+        #verify-wrapper {
             flex: 1 0 auto;
             padding: 32px;
 
-            @include media-breakpoint('xs') {
-                padding: 16px;
-            }
+            // @include media-breakpoint('xs') {
+            //     padding: 16px;
+            // }
 
-            #login-form {
+            #verify-card {
                 width: 384px;
                 max-width: 384px;
                 padding: 32px;
                 text-align: center;
-                @include mat-elevation(16);
+                background: #FFFFFF;
+                // @include mat-elevation(16);
 
-                @include media-breakpoint('xs') {
-                    padding: 24px;
-                    width: 100%;
-                }
+                // @include media-breakpoint('xs') {
+                //     padding: 24px;
+                //     width: 100%;
+                // }
 
                 .logo {
                     width: 240px;
@@ -37,43 +38,40 @@
                     margin: 16px 0 32px 0;
                 }
 
-                form {
-                    width: 100%;
-                    text-align: left;
+                // form {
+                //     width: 100%;
+                //     text-align: left;
 
-                    mat-form-field {
-                        width: 100%;
-                    }
+                //     mat-form-field {
+                //         width: 100%;
+                //     }
 
-                    mat-checkbox {
-                        margin: 0;
-                    }
+                //     mat-checkbox {
+                //         margin: 0;
+                //     }
 
-                    .remember-forgot-password {
-                        font-size: 13px;
-                        margin-top: 8px;
+                //     .remember-forgot-password {
+                //         font-size: 13px;
+                //         margin-top: 8px;
 
-                        .remember-me {
-                            margin-bottom: 16px
-                        }
+                //         .remember-me {
+                //             margin-bottom: 16px
+                //         }
 
-                        .forgot-password {
-                            font-size: 13px;
-                            font-weight: 600;
-                            margin-bottom: 16px
-                        }
-                    }
+                //         .forgot-password {
+                //             font-size: 13px;
+                //             font-weight: 600;
+                //             margin-bottom: 16px
+                //         }
+                //     }
 
-                    .submit-button {
-                        width: 220px;
-                        margin: 16px auto;
-                        display: block;
+                //     .submit-button {
+                //         width: 220px;
+                //         margin: 16px auto;
+                //         display: block;
 
-                        @include media-breakpoint('xs') {
-                            width: 90%;
-                        }
-                    }
-                }
+                //     }
+                // }
 
                 .register {
                     margin: 32px auto 24px auto;
@@ -128,18 +126,7 @@
                         font-size: 13px;
                     }
 
-                    @include media-breakpoint('xs') {
-                        width: 80%;
-                    }
 
-                    &.google {
-                        background-color: #D73D32;
-                        margin-bottom: 8px;
-                    }
-
-                    &.facebook {
-                        background-color: rgb(63, 92, 154);
-                    }
                 }
             }
         }
