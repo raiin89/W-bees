@@ -96,8 +96,8 @@ export class RegisterComponent implements OnInit, OnDestroy
         client.service('users').create({
             ...registerFormData
         }).then(res => {
-            this.snakBarService.success('Congratulations!!!, You are registered successfully.');
-            setTimeout(() => { this.router.navigate(['/login']); }, 2000);
+            this.snakBarService.success('Congratulations!!!, Your account verification email is sent to the email address you provided.');
+            // setTimeout(() => { this.router.navigate(['/login']); }, 2000);
         }, err => {
             this.snakBarService.error(err.message);
         });

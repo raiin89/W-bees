@@ -85,6 +85,7 @@ $typography: mat-typography-config(
 @import "src/app/main/auth/login/login.theme";
 @import "src/app/main/auth/register/register.theme";
 @import "src/app/main/auth/forgot-password/forgot-password.theme";
+// @import "src/app/main/auth/verify/verify.theme";
 
 // Define a mixin for easier access
 @mixin components-theme($theme) {
@@ -96,7 +97,9 @@ $typography: mat-typography-config(
     // pages Auth
     @include login-theme($theme);
     @include register-theme($theme);
-    @include forgot-password-theme($theme)
+    @include forgot-password-theme($theme);
+    // @include verify-theme($theme);
+
 }
 
 // -----------------------------------------------------------------------------------------------------
