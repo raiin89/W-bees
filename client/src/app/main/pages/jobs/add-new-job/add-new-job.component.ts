@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 
-import client from 'feather.service';
+import { Feathers } from 'feather.service';
 import { SnakBarService } from '../../../../services/snak-bar.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class AddNewJobComponent implements OnInit {
 
   constructor(
       private formBuilder: FormBuilder,
-      private snakbar: SnakBarService
+      private snakbar: SnakBarService,
+      private feathers: Feathers
   ) { }
 
   ngOnInit(): void {

@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ForgotPasswordComponent } from './main/auth/forgot-password/forgot-password.component';
 import { VerifyComponent } from './main/auth/verify/verify.component';
 import { ResetComponent } from './main/auth/reset/reset.component';
+import { Feathers } from 'feather.service';
 
 const appRoutes: Routes = [
     {
@@ -124,6 +125,9 @@ const appRoutes: Routes = [
     ],
     bootstrap: [
         AppComponent
+    ],
+    providers: [
+        Feathers
     ]
 })
 export class AppModule {

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ValidationErrors, Validators, ValidatorFn, Abst
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 
-import client from 'feather.service';
+import { Feathers } from 'feather.service';
 import { Router } from '@angular/router';
 
 import { SnakBarService } from '../../../services/snak-bar.service';
@@ -33,7 +33,8 @@ export class ForgotPasswordComponent implements OnInit
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         private router: Router,
-        private snakbar: SnakBarService
+        private snakbar: SnakBarService,
+        private feathers: Feathers
     )
     {
         // Configure the layout
@@ -71,7 +72,7 @@ export class ForgotPasswordComponent implements OnInit
     }
 
     submitforgotPasswordForm(data): void {
-        client.service('users').find({
+        this.feathers.service('users').find({
             query: {
                 email: data.email,
                 // securityQuestion: data.securityQuestion,

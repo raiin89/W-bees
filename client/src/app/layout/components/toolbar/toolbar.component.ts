@@ -8,7 +8,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
-import client from 'feather.service';
+import { Feathers } from 'feather.service';
 import { Router } from '@angular/router';
 import { SnakBarService } from '../../../services/snak-bar.service';
 
@@ -45,7 +45,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
         private router: Router,
-        private snakbar: SnakBarService
+        private snakbar: SnakBarService,
+        private feathers: Feathers
     )
     {
         // Set the defaults
@@ -175,7 +176,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     }
 
     logout(): void {
-        client.logout();
+        this.feathers.logout();
         localStorage.clear();
         this.router.navigate(['/']);
         this.snakbar.success('You logged out successfully.');

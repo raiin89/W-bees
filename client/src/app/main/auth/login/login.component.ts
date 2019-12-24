@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import client from 'feather.service';
+import { Feathers } from 'feather.service';
 import { Router } from '@angular/router';
 
 import { SnakBarService } from '../../../services/snak-bar.service';
@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         private router: Router,
-        private snakbar: SnakBarService
+        private snakbar: SnakBarService,
+        private feathers: Feathers
     )
     {
         // Configure the layout
@@ -68,7 +69,7 @@ export class LoginComponent implements OnInit
 
     submitLoginForm(loginData): void {
 
-        client.authenticate({
+        this.feathers.authenticate({
             strategy: 'local',
             ...loginData
         }).then(res => {
