@@ -57,11 +57,12 @@ export class ResetComponent implements OnInit {
   }
 
   setNewPassword = (newPass) => {
-    this.feathers.service('authmanagement').create({
+      console.log("pass", newPass)
+    this.feathers.service('authManagement').create({
         action: 'resetPwdLong',
         value: {
             token: this.token,
-            password: newPass
+            password: newPass.newPassword
         }
     })
     .then(res => {

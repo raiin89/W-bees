@@ -1,6 +1,6 @@
 module.exports = function(app) {
 	function getLink(type, hash) {
-		const url = "http://localhost:3030/" + type + "?token=" + hash;
+		const url = process.env.URL + '/' + type + "?token=" + hash;
 		return url;
 	}
 

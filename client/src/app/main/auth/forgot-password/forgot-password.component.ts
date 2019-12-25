@@ -72,14 +72,13 @@ export class ForgotPasswordComponent implements OnInit
     }
 
     submitforgotPasswordForm(data): void {
-        this.feathers.service('users').find({
-            query: {
+        this.feathers.service('authManagement').create({
+            action: "sendResetPwd",
+            value: {
                 email: data.email,
-                // securityQuestion: data.securityQuestion,
-                // securityAnswer: data.securityAnswer
             }
         }).then(res => {
-            this.requestResult = res[0];
+            console.log(res)
             if (this.requestResult !== undefined){
                 this.requestId = this.requestResult['id'];
                 this.snakbar.success('You can reset your password.');
