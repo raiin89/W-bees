@@ -26,6 +26,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegisterComponent } from './main/auth/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ForgotPasswordComponent } from './main/auth/forgot-password/forgot-password.component';
+import { VerifyComponent } from './main/auth/verify/verify.component';
+import { ResetComponent } from './main/auth/reset/reset.component';
+import { Feathers } from 'feather.service';
 
 const appRoutes: Routes = [
     {
@@ -41,17 +44,37 @@ const appRoutes: Routes = [
         component: RegisterComponent
     },
     {
+        path: 'verify',
+        component: VerifyComponent
+    },
+    {
+        path: 'reset',
+        component: ResetComponent
+    },
+    {
         path:  'forgot-password',
         component: ForgotPasswordComponent
     },
     {
-        path: 'dashboard',
-        redirectTo: 'sample'
+        path: 'bidders',
+        loadChildren: './main/pages/bidders/bidders.module#BiddersModule'
+    },
+    {
+        path: 'bids',
+        loadChildren: './main/pages/bids/bids.module#BidsModule'
+    },
+    {
+        path: 'connection',
+        loadChildren: './main/pages/connections/connections.module#ConnectionsModule'
     },
     {
         path: 'jobs',
         // redirectTo: 'jobs'
         loadChildren: './main/pages/jobs/jobs.module#JobsModule'
+    },
+    {
+        path: 'dashboard',
+        redirectTo: 'sample'
     },
     {
         path: '**',
@@ -64,7 +87,9 @@ const appRoutes: Routes = [
         AppComponent,
         LoginComponent,
         RegisterComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        VerifyComponent,
+        ResetComponent
         ],
     imports: [
         BrowserModule,
@@ -100,6 +125,9 @@ const appRoutes: Routes = [
     ],
     bootstrap: [
         AppComponent
+    ],
+    providers: [
+        Feathers
     ]
 })
 export class AppModule {

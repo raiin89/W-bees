@@ -1,9 +1,7 @@
 <div id="jobPost" fxLayout="column">
     <div id="jobPost-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
         <div id="jobPost-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
-            <!-- <div class="logo">
-                <img src="assets/images/logos/WBees_logo.png">
-            </div> -->
+
             <div class="title">CREATE A NEW JOB</div>
             <form name="jobsForm" [formGroup]="jobsForm" (ngSubmit)="postNewJob(jobsForm.value)" novalidate>
                 <mat-form-field appearance="outline">
@@ -13,66 +11,38 @@
                         *Job title is required
                     </mat-error>
                 </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Job Category</mat-label>
+                    <mat-select formControlName="categoryId">
+                        <mat-option>None</mat-option>
+                        <mat-option value="1">First category</mat-option>
+                        <mat-option value="2">Second category</mat-option>
+                        <mat-option value="3">Third category</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="jobsForm.get('categoryId').hasError('required')">
+                        *Job category is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Job Description</mat-label>
+                    <textarea matInput formControlName="description" placeholder="Add job description here"></textarea>
+                    <mat-error *ngIf="jobsForm.get('title').hasError('required')">
+                        *Job description is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Job Price</mat-label>
+                    <input matInput type="number" formControlName="price">
+                    <mat-error *ngIf="jobsForm.get('price').hasError('required')">
+                        *Job price is required
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="POST NEW JOB"
+                    [disabled]="jobsForm.invalid">
+                    POST NEW JOB
+                </button>
             </form>
         </div>
     </div>
 </div>
-
-
-
-
-
-<!-- <div id="register-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}"> -->
-
-    <!-- <div class="page-layout blank p-24" fusePerfectScrollbar> -->
-        <!-- <div class="title">Post a new job</div> -->
-
-        <!-- <form name="jobsForm" [formGroup]="jobsForm" (ngSubmit)="postNewJob(jobsForm.value)" novalidate> -->
-
-            <!-- <mat-form-field appearance="outline">
-                <mat-label>Job Title</mat-label>
-                <input matInput formControlName="title">
-                <mat-error *ngIf="jobsForm.get('title').hasError('required')">
-                    *Job title is required
-                </mat-error>
-            </mat-form-field> -->
-
-            <!-- <mat-form-field appearance="outline">
-                <mat-label>Job description</mat-label>
-                <input matInput formControlName="description">
-                <mat-error *ngIf="jobsForm.get('description').hasError('required')">
-                    *Job description is required
-                </mat-error>
-            </mat-form-field> -->
-
-            <!-- <mat-form-field appearance="outline">
-                <mat-label>Price</mat-label>
-                <input matInput formControlName="price">
-                <mat-error *ngIf="jobsForm.get('price').hasError('required')">
-                    Price is required
-                </mat-error>
-            </mat-form-field> -->
-
-            <!-- <mat-form-field appearance="outline">
-                <mat-label>Select job category</mat-label>
-                <mat-select formControlName="categoryId">
-                    <mat-option>None</mat-option>
-                    <mat-option value="first">First category</mat-option>
-                    <mat-option value="second">Second category</mat-option>
-                    <mat-option value="third">Third category</mat-option>
-                </mat-select>
-                <mat-error *ngIf="jobsForm.get('role').hasError('required')">
-                    Job category is required
-                </mat-error>
-            </mat-form-field> -->
-
-            <!-- <button mat-raised-button color="accent" class="submit-button" aria-label="POST NEW JOB"
-                    [disabled]="jobsForm.invalid">
-                POST NEW JOB
-            </button> -->
-
-        <!-- </form> -->
-
-    <!-- </div> -->
-
-<!-- </div> -->

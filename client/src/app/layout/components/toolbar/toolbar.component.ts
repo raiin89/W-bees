@@ -8,8 +8,9 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
-import client from 'feather.service';
+import { Feathers } from 'feather.service';
 import { Router } from '@angular/router';
+import { SnakBarService } from '../../../services/snak-bar.service';
 
 @Component({
     selector     : 'toolbar',
@@ -43,7 +44,9 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
-        private router: Router
+        private router: Router,
+        private snakbar: SnakBarService,
+        private feathers: Feathers
     )
     {
         // Set the defaults
@@ -106,7 +109,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // my code to get user details from local storage
         if (localStorage.getItem('user-details')){
             this.userData = JSON.parse(localStorage.getItem('user-details'));
-            console.log('user-details', this.userData.username);
+            // console.log('user-details', this.userData.username);
         }
 
 
@@ -172,9 +175,10 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this._translateService.use(lang.id);
     }
 
-    logout() {
-        client.logout();
+    logout(): void {
+        this.feathers.logout();
         localStorage.clear();
         this.router.navigate(['/']);
+        this.snakbar.success('You logged out successfully.');
     }
 }

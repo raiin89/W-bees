@@ -33,7 +33,7 @@ export const navigation: FuseNavigation[] = [
                 title   :   'My Jobs',
                 type    :   'item',
                 icon    :   'job',
-                url     :   '/jobs/myjobs',
+                url     :   '/jobs/my-jobs',
                 badge    : {
                     title    : '23',
                     bg       : '#F44336',
@@ -45,7 +45,7 @@ export const navigation: FuseNavigation[] = [
                 title   :   'Add a new job',
                 type    :   'item',
                 icon    :   'job',
-                url     :   '/jobs/addjob',  
+                url     :   '/jobs/add-job',
             }
         ]
     },

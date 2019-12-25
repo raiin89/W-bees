@@ -3,8 +3,13 @@ import { CommonModule } from '@angular/common';
 import { MyJobsComponent } from './my-jobs/my-jobs.component';
 import { AddNewJobComponent } from './add-new-job/add-new-job.component';
 import { RouterModule, Routes } from '@angular/router';
+
+// Material imports
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule} from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 
 const jobRoutes: Routes = [
@@ -34,8 +39,11 @@ const jobRoutes: Routes = [
         ReactiveFormsModule,
 
         // Material
+        MatFormFieldModule,
+        MatInputModule,
         MatSelectModule,
-        MatIconModule
+        MatIconModule,
+        MatButtonModule
     ]
 })
 export class JobsModule { }

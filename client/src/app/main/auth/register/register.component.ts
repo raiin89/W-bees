@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/internal/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import client from 'feather.service';
+import { Feathers } from 'feather.service';
 import { Router } from '@angular/router';
 
 import { SnakBarService } from '../../../services/snak-bar.service';
@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         private router: Router,
-        private snakBarService: SnakBarService
+        private snakBarService: SnakBarService,
+        private feathers: Feathers
     )
     {
         // Configure the layout
@@ -67,8 +68,6 @@ export class RegisterComponent implements OnInit, OnDestroy
             email               :   ['', [Validators.required, Validators.email]],
             zipcode             :   ['', Validators.required],
             role                :   ['', Validators.required],
-            securityQuestion    :   ['', Validators.required],
-            securityAnswer      :   ['', Validators.required],
             password            :   ['', Validators.required],
             passwordConfirm     :   ['', [Validators.required, confirmPasswordValidator]]
         });
@@ -93,11 +92,11 @@ export class RegisterComponent implements OnInit, OnDestroy
     }
 
     submitRegisterForm(registerFormData): void {
-        client.service('users').create({
+        this.feathers.service('users').create({
             ...registerFormData
         }).then(res => {
-            this.snakBarService.success('Congratulations!!!, You are registered successfully.');
-            setTimeout(() => { this.router.navigate(['/login']); }, 2000);
+            this.snakBarService.success('Congratulations!!!, Your account verification email is sent to the email address you provided.');
+            // setTimeout(() => { this.router.navigate(['/login']); }, 2000);
         }, err => {
             this.snakBarService.error(err.message);
         });
