@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Feathers } from 'feather.service';
+import { SnakBarService } from '../../../../services/snak-bar.service';
 
 @Component({
   selector: 'app-my-jobs',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyJobsComponent implements OnInit {
 
-  constructor() { }
+  myJobs: any;
 
-  ngOnInit() {
+  constructor(
+    private snakbar: SnakBarService,
+    private feathers: Feathers
+  ) { }
+
+  ngOnInit(): void {
+      this.getMyJobs();
   }
 
+  getMyJobs = () => {
+    this.feathers.service('jobs').find()
+    .then(res => {
+        this.myJobs = res;
+    }, err => {
+        console.log('err', err);
+    });
+  }
 }

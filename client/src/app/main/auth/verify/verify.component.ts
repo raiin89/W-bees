@@ -55,6 +55,7 @@ export class VerifyComponent implements OnInit {
       .then(res => {
         console.log(this.token, ' authmanagement res :', res);
         this.snakBar.success('Your accoount is verified successfully!!!');
+        setTimeout(() => { this.router.navigate(['/login']); }, 2000);
       }, err => {
         console.log('authmanagement err', err);
         this.snakBar.success(err);

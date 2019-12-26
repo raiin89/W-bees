@@ -14,7 +14,8 @@ import { SnakBarService } from '../../../../services/snak-bar.service';
 export class AddNewJobComponent implements OnInit {
 
   jobsForm: FormGroup;
-
+  userDetails: any;
+  id: any;
   constructor(
       private formBuilder: FormBuilder,
       private snakbar: SnakBarService,
@@ -28,19 +29,23 @@ export class AddNewJobComponent implements OnInit {
         description         :   ['', Validators.required],
         price               :   ['', Validators.required]
     });
+
+    if (localStorage.getItem('user-details')){
+        this.userDetails = JSON.parse(localStorage.getItem('user-details'));
+        this.id = this.userDetails.id;
+    }
   }
 
   postNewJob = (job) => {
-    console.log('job', job);
-    this.snakbar.success('You will able to post job soon.');
-    // client.service('jobs').create({
-    //     ...job
-    // })
-    // .then(res => {
-    //     console.log('response of create job', job);
-    // }, err => {
-    //     console.log('err', err);
-    // });
+    this.feathers.service('jobs').create({
+        ...job
+    })
+    .then(res => {
+        this.snakbar.success('You added a job succesfully.');
+        // this.jobsForm.reset();
+    }, err => {
+        console.log('err', err);
+    });
   }
 
 }
