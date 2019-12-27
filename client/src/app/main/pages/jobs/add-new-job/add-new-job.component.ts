@@ -37,7 +37,7 @@ export class AddNewJobComponent implements OnInit {
   }
 
   postNewJob = (job) => {
-    this.feathers.service('jobs').create({
+    this.feathers.create('jobs', {
         ...job
     })
     .then(res => {

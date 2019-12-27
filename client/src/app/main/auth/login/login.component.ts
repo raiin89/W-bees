@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { Feathers } from 'feather.service';
+// const feathers = require('@feathersjs/feathers');
+// const app = feathers();
 import { Router } from '@angular/router';
 
 import { SnakBarService } from '../../../services/snak-bar.service';

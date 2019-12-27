@@ -21,7 +21,9 @@ export class MyJobsComponent implements OnInit {
   }
 
   getMyJobs = () => {
-    this.feathers.service('jobs').find()
+    this.feathers.find('jobs', {
+        query: {createdBy: 1}
+    })
     .then(res => {
         this.myJobs = res;
     }, err => {

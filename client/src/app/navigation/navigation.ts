@@ -32,19 +32,19 @@ export const navigation: FuseNavigation[] = [
                 id      :   'my-jobs',
                 title   :   'My Jobs',
                 type    :   'item',
-                icon    :   'job',
+                icon    :   'work',
                 url     :   '/jobs/my-jobs',
-                badge    : {
-                    title    : '23',
-                    bg       : '#F44336',
-                    fg       : '#FFFFFF'
-                }
+                // badge    : {
+                //     title    : '23',
+                //     bg       : '#F44336',
+                //     fg       : '#FFFFFF'
+                // }
             },
             {
                 id      :   'add-new-job',
                 title   :   'Add a new job',
                 type    :   'item',
-                icon    :   'job',
+                icon    :   'assignment',
                 url     :   '/jobs/add-job',
             }
         ]
@@ -58,7 +58,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'near-by-bidders',
                 title    : 'Near By Bidders',
                 type     : 'item',
-                icon     : 'location',
+                icon     : 'near_me',
                 url      : '/bidders/nearby',
             }
         ]
@@ -72,7 +72,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'my-contacts',
                 title    : 'My Contacts',
                 type     : 'item',
-                icon     : 'account_box',
+                icon     : 'contacts',
                 url      : 'connection/mycontacts',
             }
         ]
@@ -95,6 +95,106 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'email',
                 url      : '/bids/approved',
+            }
+        ]
+    }
+];
+
+export const navigationSeeker: FuseNavigation[] = [
+    {
+        id       : 'applications',
+        title    : 'Applications Seeker',
+        translate: 'NAV.APPLICATIONS',
+        type     : 'group',
+        children : [
+            {
+                id       : 'sample',
+                title    : 'Sample',
+                translate: 'NAV.SAMPLE.TITLE',
+                type     : 'item',
+                icon     : 'email',
+                url      : '/dashboard',
+                badge    : {
+                    title    : '25',
+                    translate: 'NAV.SAMPLE.BADGE',
+                    bg       : '#F44336',
+                    fg       : '#FFFFFF'
+                }
+            }
+        ]
+    },
+    // {
+    //     id       : 'jobs',
+    //     title    :  'Jobs',
+    //     type     :  'group',
+    //     children :  [
+    //         {
+    //             id      :   'my-jobs',
+    //             title   :   'My Jobs',
+    //             type    :   'item',
+    //             icon    :   'work',
+    //             url     :   '/jobs/my-jobs',
+    //             badge    : {
+    //                 title    : '23',
+    //                 bg       : '#F44336',
+    //                 fg       : '#FFFFFF'
+    //             }
+    //         },
+    //         {
+    //             id      :   'add-new-job',
+    //             title   :   'Add a new job',
+    //             type    :   'item',
+    //             icon    :   'assignment',
+    //             url     :   '/jobs/add-job',
+    //         }
+    //     ]
+    // },
+    {
+        id       : 'jobs',
+        title    : 'Jobs',
+        type     : 'group',
+        children : [
+            {
+                id       : 'near-by-jobs',
+                title    : 'Near By Jobs',
+                type     : 'item',
+                icon     : 'near_me',
+                url      : '/jobs/nearby',
+            }
+        ]
+    },
+    {
+        id       : 'connections',
+        title    : 'Connections',
+        type     : 'group',
+        children : [
+            {
+                id       : 'my-contacts',
+                title    : 'My Contacts',
+                type     : 'item',
+                icon     : 'contacts',
+                url      : 'connection/mycontacts',
+            }
+        ]
+    },
+    {
+        id       : 'my-bids',
+        title    : 'My Bids',
+        type     : 'group',
+        children : [
+            {
+                id       : 'pending-bids',
+                title    : 'Pending Bids',
+                type     : 'item',
+                icon     : 'email',
+                url      : '/my-bids/pending',
+            },
+            {
+                id       : 'approved-bids',
+                title    : 'Approved bids',
+                type     : 'item',
+                icon     : 'email',
+                url      : '/my-bids/approved',
             }
         ]
     }

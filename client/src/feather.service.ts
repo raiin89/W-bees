@@ -26,11 +26,19 @@ export class Feathers {
     return this._feathers.authenticate(credentials);
   }
 
-  public logout(): void {
+  public logout(): Promise<any> {
     return this._feathers.logout();
   }
 
   public reAuthenticate(): Promise<any> {
     return this._feathers.reAuthenticate();
+  }
+
+  public create(serviceName, query): Promise<any> {
+    return this._feathers.service(serviceName).create(query);
+  }
+
+  public find(serviceName, query): Promise<any> {
+    return this._feathers.service(serviceName).find(query);
   }
 }

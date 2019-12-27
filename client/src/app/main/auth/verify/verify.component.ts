@@ -2,7 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import { Feathers } from 'feather.service';
+
+import feathers from '@feathersjs/feathers';
+// import { Feathers } from 'feather.service';
+// const feathers = require('@feathersjs/feathers');
+// const app = feathers();
 import { Router, ActivatedRoute } from '@angular/router';
 import { SnakBarService } from '../../../services/snak-bar.service';
 
@@ -15,13 +19,15 @@ import { SnakBarService } from '../../../services/snak-bar.service';
 })
 export class VerifyComponent implements OnInit {
 
+  private _feathers = feathers();
+
   token: any;
   constructor(
     private _fuseConfigService: FuseConfigService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private snakBar: SnakBarService,
-    private feathers: Feathers
+    // private feathers: Feathers
   ) {
     this._fuseConfigService.config = {
         layout: {
@@ -48,7 +54,7 @@ export class VerifyComponent implements OnInit {
 
   ngOnInit(): void {
       console.log(this.token);
-      this.feathers.service('authManagement').create({
+      this._feathers.service('authManagement').create({
         action: 'verifySignupLong',
         value: this.token
       })

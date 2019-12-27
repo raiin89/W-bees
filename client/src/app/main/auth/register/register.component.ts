@@ -6,6 +6,8 @@ import { takeUntil } from 'rxjs/internal/operators';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { Feathers } from 'feather.service';
+// const feathers = require('@feathersjs/feathers');
+// const app = feathers();
 import { Router } from '@angular/router';
 
 import { SnakBarService } from '../../../services/snak-bar.service';
@@ -92,7 +94,7 @@ export class RegisterComponent implements OnInit, OnDestroy
     }
 
     submitRegisterForm(registerFormData): void {
-        this.feathers.service('users').create({
+        this.feathers.create('users', {
             ...registerFormData
         }).then(res => {
             this.snakBarService.success('Congratulations!!!, Your account verification email is sent to the email address you provided.');

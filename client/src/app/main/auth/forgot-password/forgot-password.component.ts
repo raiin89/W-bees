@@ -4,7 +4,10 @@ import { FormBuilder, FormGroup, ValidationErrors, Validators, ValidatorFn, Abst
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 
-import { Feathers } from 'feather.service';
+// import { Feathers } from 'feather.service';
+import feathers from '@feathersjs/feathers';
+// const feathers = require('@feathersjs/feathers');
+// const app = feathers();
 import { Router } from '@angular/router';
 
 import { SnakBarService } from '../../../services/snak-bar.service';
@@ -18,6 +21,8 @@ import { SnakBarService } from '../../../services/snak-bar.service';
 })
 export class ForgotPasswordComponent implements OnInit
 {
+    private _feathers = feathers();
+
     forgotPasswordForm: FormGroup;
     newPasswordForm: FormGroup;
     requestResult = {};
@@ -34,7 +39,7 @@ export class ForgotPasswordComponent implements OnInit
         private _formBuilder: FormBuilder,
         private router: Router,
         private snakbar: SnakBarService,
-        private feathers: Feathers
+        // private feathers: Feathers
     )
     {
         // Configure the layout
@@ -72,13 +77,14 @@ export class ForgotPasswordComponent implements OnInit
     }
 
     submitforgotPasswordForm(data): void {
-        this.feathers.service('authManagement').create({
+        this._feathers.service('authManagement')
+        .create({
             action: "sendResetPwd",
             value: {
                 email: data.email,
             }
         }).then(res => {
-            console.log(res)
+            console.log(res);
             if (this.requestResult !== undefined){
                 this.requestId = this.requestResult['id'];
                 this.snakbar.success('You can reset your password.');

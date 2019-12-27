@@ -15,6 +15,9 @@ import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
 
+import { Feathers } from 'feather.service';
+import { Router } from '@angular/router';
+
 @Component({
     selector   : 'app',
     templateUrl: './app.component.html',
@@ -48,29 +51,31 @@ export class AppComponent implements OnInit, OnDestroy
         private _fuseSplashScreenService: FuseSplashScreenService,
         private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private _translateService: TranslateService,
-        private _platform: Platform
+        private _platform: Platform,
+        private _feathers: Feathers,
+        private router: Router
     )
     {
         // Get default navigation
-        this.navigation = navigation;
+        // this.navigation = navigation;
 
         // Register the navigation to the service
-        this._fuseNavigationService.register('main', this.navigation);
+        // this._fuseNavigationService.register('main', this.navigation);
 
         // Set the main navigation as our current navigation
-        this._fuseNavigationService.setCurrentNavigation('main');
+        // this._fuseNavigationService.setCurrentNavigation('main');
 
         // Add languages
-        this._translateService.addLangs(['en', 'tr']);
+       // this._translateService.addLangs(['en', 'tr']);
 
         // Set the default language
-        this._translateService.setDefaultLang('en');
+        //this._translateService.setDefaultLang('en');
 
         // Set the navigation translations
-        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
+       // this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
 
         // Use a language
-        this._translateService.use('en');
+       // this._translateService.use('en');
 
         /**
          * ----------------------------------------------------------------------------------------------------
@@ -154,6 +159,7 @@ export class AppComponent implements OnInit, OnDestroy
 
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
+        this.reAuthenticationFun();
     }
 
     /**
@@ -164,6 +170,9 @@ export class AppComponent implements OnInit, OnDestroy
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+
+        this._feathers.logout();
+        localStorage.clear();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -178,5 +187,13 @@ export class AppComponent implements OnInit, OnDestroy
     toggleSidebarOpen(key): void
     {
         this._fuseSidebarService.getSidebar(key).toggleOpen();
+    }
+
+    reAuthenticationFun = () => {
+        this._feathers.reAuthenticate()
+        .then(res => {
+        }).catch(err => {
+            this.router.navigate(['/']);
+        });
     }
 }

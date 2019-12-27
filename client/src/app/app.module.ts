@@ -17,7 +17,7 @@ import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
+import { DashboardModule } from 'app/main/dashboard/dashboard.module';
 import { LoginComponent } from './main/auth/login/login.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,6 +29,7 @@ import { ForgotPasswordComponent } from './main/auth/forgot-password/forgot-pass
 import { VerifyComponent } from './main/auth/verify/verify.component';
 import { ResetComponent } from './main/auth/reset/reset.component';
 import { Feathers } from 'feather.service';
+import { NearByJobsComponent } from './main/bidderModel/near-by-jobs/near-by-jobs.component';
 
 const appRoutes: Routes = [
     {
@@ -74,7 +75,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'dashboard',
-        redirectTo: 'sample'
+        redirectTo: 'dashboard'
     },
     {
         path: '**',
@@ -89,7 +90,8 @@ const appRoutes: Routes = [
         RegisterComponent,
         ForgotPasswordComponent,
         VerifyComponent,
-        ResetComponent
+        ResetComponent,
+        NearByJobsComponent
         ],
     imports: [
         BrowserModule,
@@ -116,7 +118,7 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule,
+        DashboardModule,
 
         MatCheckboxModule,
         MatFormFieldModule,
