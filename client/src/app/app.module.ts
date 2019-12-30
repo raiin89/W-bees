@@ -22,14 +22,20 @@ import { LoginComponent } from './main/auth/login/login.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegisterComponent } from './main/auth/register/register.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ForgotPasswordComponent } from './main/auth/forgot-password/forgot-password.component';
 import { VerifyComponent } from './main/auth/verify/verify.component';
 import { ResetComponent } from './main/auth/reset/reset.component';
 import { Feathers } from 'feather.service';
-import { NearByJobsComponent } from './main/bidderModel/near-by-jobs/near-by-jobs.component';
+// import { NearByJobsComponent } from './main/bidderModel/near-by-jobs/near-by-jobs.component';
+import { MatGridListModule } from '@angular/material';
+import { ProviderJobCardComponent } from './main/common-components/provider-job-card/provider-job-card.component';
+// import { SeekerJobCardComponent } from './main/common-components/seeker-job-card/seeker-job-card.component';
+// import { SeekerPendingJobsComponent } from './main/bidderModel/seeker-pending-jobs/seeker-pending-jobs.component';
+// import { SeekerApprovedJobsComponent } from './main/bidderModel/seeker-approved-jobs/seeker-approved-jobs.component';
+import { BidderModule } from './main/bidderModel/bidder-module.module';
 
 const appRoutes: Routes = [
     {
@@ -74,6 +80,10 @@ const appRoutes: Routes = [
         loadChildren: './main/pages/jobs/jobs.module#JobsModule'
     },
     {
+        path: 'bidder',
+        loadChildren: './main/bidderModel/bidder-module.module#BidderModule'
+    },
+    {
         path: 'dashboard',
         redirectTo: 'dashboard'
     },
@@ -91,7 +101,11 @@ const appRoutes: Routes = [
         ForgotPasswordComponent,
         VerifyComponent,
         ResetComponent,
-        NearByJobsComponent
+        // NearByJobsComponent,
+        ProviderJobCardComponent,
+        // SeekerJobCardComponent,
+        // SeekerPendingJobsComponent,
+        // SeekerApprovedJobsComponent
         ],
     imports: [
         BrowserModule,
@@ -119,11 +133,13 @@ const appRoutes: Routes = [
         // App modules
         LayoutModule,
         DashboardModule,
+        BidderModule,
 
         MatCheckboxModule,
         MatFormFieldModule,
         MatInputModule,
-        MatButtonModule
+        MatButtonModule,
+        MatGridListModule
     ],
     bootstrap: [
         AppComponent

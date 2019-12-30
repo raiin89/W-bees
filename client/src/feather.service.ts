@@ -11,7 +11,7 @@ export class Feathers {
   constructor() {
     this._feathers
       .configure(feathers.socketio(this._socket, {
-        timeout: 15000
+        timeout: 50000
       }))
       .configure(feathers.authentication({
         storage: window.localStorage

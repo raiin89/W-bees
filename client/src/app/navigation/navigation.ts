@@ -159,7 +159,7 @@ export const navigationSeeker: FuseNavigation[] = [
                 title    : 'Near By Jobs',
                 type     : 'item',
                 icon     : 'near_me',
-                url      : '/jobs/nearby',
+                url      : '/bidder/near-by-jobs',
             }
         ]
     },
@@ -187,14 +187,14 @@ export const navigationSeeker: FuseNavigation[] = [
                 title    : 'Pending Bids',
                 type     : 'item',
                 icon     : 'email',
-                url      : '/my-bids/pending',
+                url      : '/bidder/pending-bids',
             },
             {
                 id       : 'approved-bids',
                 title    : 'Approved bids',
                 type     : 'item',
                 icon     : 'email',
-                url      : '/my-bids/approved',
+                url      : '/bidder/approved-bids',
             }
         ]
     }
