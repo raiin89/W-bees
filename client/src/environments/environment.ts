@@ -5,9 +5,9 @@
 export const environment = {
     production: false,
     hmr       : false,
-    API       : 'http://localhost:3030'
-    // API : 'http://142.93.114.3'
+    API : 'http://142.93.114.3'
 };
+// API       : 'http://localhost:3030'
 
 /*
  * For easier debugging in development mode, you can import the following file
