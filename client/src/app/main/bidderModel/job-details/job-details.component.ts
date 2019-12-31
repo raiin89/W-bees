@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Feathers } from 'feather.service';
+import { SnakBarService } from '../../../services/snak-bar.service';
+
 
 const orderStatuses = [
     {
@@ -53,15 +55,16 @@ export class JobDetailsComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _Activatedroute: ActivatedRoute,
-    private feather: Feathers
+    private feather: Feathers,
+    private snakbar: SnakBarService,
   ) {
     this.orderStatuses = orderStatuses;
    }
 
   ngOnInit(): void {
     this.bidForm = this._formBuilder.group({
-        description     : [''],
-        price           : [''],
+        description     : ['', Validators.required],
+        price           : ['', Validators.required]
     });
     this.jobId = this._Activatedroute.snapshot.paramMap.get('id');
     console.log('Job details job id', this.jobId);
@@ -78,15 +81,18 @@ export class JobDetailsComponent implements OnInit {
   }
 
   submitBid = (bidForms) => {
-      console.log('bid data', bidForms);
+    // bidForms.status = this.jobDetails.status;
+    bidForms.id = this.jobDetails.jobId
+
+    this.feather.create('bids', {
+      ...bidForms
+    }).then(res => {
+      this.snakbar.success('You added a job succesfully.');
+        // this.jobsForm.reset();
+    }, err => {
+        console.log('err', err);
+    });
     //   this.feather.create
-  }
-  createBidForm(): FormGroup
-  {
-      return this._formBuilder.group({
-          description     : [''],
-          price           : [''],
-      });
   }
 
 }

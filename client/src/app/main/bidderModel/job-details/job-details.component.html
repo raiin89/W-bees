@@ -78,12 +78,11 @@
 
                     <mat-tab label="Bid the job">
                         <div class="tab-content p-24" fusePerfectScrollbar>
-                        <!-- <form name="bidForm" [formGroup]="bidForm" (ngSubmit)="submitBid(bidForm.value)" novalidate> -->
+                        <form name="bidForm" [formGroup]="bidForm" (ngSubmit)="submitBid(bidForm.value)">
 
                             <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
                                 <mat-label>Bid Price</mat-label>
                                 <input matInput placeholder="Bid Price"
-                                        name="pricerice"
                                         formControlName="price"
                                         type="number">
                                 <span matPrefix>$&nbsp;</span>
@@ -92,16 +91,14 @@
                             <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
                                 <mat-label>Description</mat-label>
                                 <textarea matInput placeholder="Bid Description"
-                                        name="description"
-                                        formControlName="description"
-                                        type="text"></textarea>
+                                        formControlName="description"></textarea>
                             </mat-form-field>
 
-                            <button mat-raised-button color="accent" class="submit-button"  aria-label="SUBMIT BID"
+                            <button mat-raised-button color="accent" class="submit-button" click="submitBid(price, description)"  aria-label="SUBMIT BID"
                                     [disabled]="bidForm.invalid">
                                     SUBMIT BID
                             </button>
-                        <!-- </form> -->
+                        </form>
                         </div>
                     </mat-tab>
                 </mat-tab-group>

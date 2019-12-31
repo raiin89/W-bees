@@ -7,6 +7,7 @@ import { SeekerPendingJobsComponent } from './seeker-pending-jobs/seeker-pending
 import { SeekerJobCardComponent } from '../common-components/seeker-job-card/seeker-job-card.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { MatIconModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInputModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const bidderRoute: Routes = [
     // {
@@ -42,7 +43,7 @@ const bidderRoute: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(bidderRoute),
-
+    ReactiveFormsModule,
     // Mat modules
     MatButtonModule,
     MatExpansionModule,
