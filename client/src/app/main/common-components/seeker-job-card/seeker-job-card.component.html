@@ -9,25 +9,25 @@
 
             <div class="header web-bg" fxLayout="row" fxLayoutAlign="center center">
 
-                <div class="category" fxFlex>
+                <div class="category job-title" fxFlex>
                    Job Title : {{job.title}}
                 </div>
-
+                <div class="job-price">Job price : {{job.price}}</div>
                 <div class="length" fxLayout="row" fxLayoutAlign="center center">
-                    <div class="min"> Job Status : {{job.status}} </div>
+                    <div class="min job-status"> Job Status : {{job.status}} </div>
                 </div>
 
             </div>
 
             <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
-                <div class="h1">Job price : {{job.price}}</div>
+
                 <div class="updated">Job description : {{job.description}}</div>
             </div>
 
-            <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+            <div class="footer start-btn" fxLayout="row" fxLayoutAlign="center center">
                 <button mat-button color="accent"
-                        [routerLink]="'/apps/academy/courses/' + job.id + '/' + job.slug">
-                    START
+                        [routerLink]="['/bidder/job-details', job.id]">
+                    Details
                 </button>
             </div>
 

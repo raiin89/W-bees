@@ -41,4 +41,8 @@ export class Feathers {
   public find(serviceName, query): Promise<any> {
     return this._feathers.service(serviceName).find(query);
   }
+
+  public get(serviceName, query): Promise<any> {
+    return this._feathers.service(serviceName).get(query);
+  }
 }

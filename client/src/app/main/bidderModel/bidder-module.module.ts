@@ -5,6 +5,8 @@ import { NearByJobsComponent } from './near-by-jobs/near-by-jobs.component';
 import { SeekerApprovedJobsComponent } from './seeker-approved-jobs/seeker-approved-jobs.component';
 import { SeekerPendingJobsComponent } from './seeker-pending-jobs/seeker-pending-jobs.component';
 import { SeekerJobCardComponent } from '../common-components/seeker-job-card/seeker-job-card.component';
+import { JobDetailsComponent } from './job-details/job-details.component';
+import { MatIconModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInputModule } from '@angular/material';
 
 const bidderRoute: Routes = [
     // {
@@ -22,6 +24,10 @@ const bidderRoute: Routes = [
     {
         path: 'pending-bids',
         component: SeekerPendingJobsComponent
+    },
+    {
+        path: 'job-details/:id',
+        component: JobDetailsComponent
     }
 ];
 
@@ -30,11 +36,21 @@ const bidderRoute: Routes = [
       NearByJobsComponent,
       SeekerApprovedJobsComponent,
       SeekerPendingJobsComponent,
-      SeekerJobCardComponent
+      SeekerJobCardComponent,
+      JobDetailsComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(bidderRoute)
+    RouterModule.forChild(bidderRoute),
+
+    // Mat modules
+    MatButtonModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTabsModule
   ]
 })
 export class BidderModule { }

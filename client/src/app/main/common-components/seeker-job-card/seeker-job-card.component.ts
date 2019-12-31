@@ -27,4 +27,7 @@ export class SeekerJobCardComponent implements OnInit {
 
     }
 
+    getJobID = (job) => {
+        console.log('Job ID', job);
+    }
 }
