@@ -92,30 +92,16 @@
 
 .start-btn{
     text-align:center;
+    display: flex;
+    justify-content: space-between;
 }.start-btn button{
     background:none;
     border:none;
     color: mat-color($mat-blue, 500);
     cursor: pointer;
 }
-#dashboard-project {
 
-    > .sidebar {
-        width: 280px;
-        min-width: 280px;
-        max-width: 280px;
-    }
-
-    > .center {
-
-        > .header {
-            height: 160px;
-            min-height: 160px;
-            max-height: 160px;
-        }
-
-        > .content {
-            flex: 1;
-        }
-    }
-}
+// .bid-response-btn{
+//     display: flex;
+//     justify-content: space-between;
+// }

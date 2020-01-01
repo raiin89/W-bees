@@ -1,1 +1,53 @@
-<p>near-by-bidders works!</p>
+<div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
+
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar>
+
+        <!-- HEADER -->
+        <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message"
+                    [@animate]="{value:'*',params:{x:'50px'}}">Near by bidders
+                </span>
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
+        <div class="content-card">
+            <div class="course web card-head" *ngFor="let bidder of bidders" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33"
+                [@animate]="{value:'*',params:{y:'100%'}}">
+
+                <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
+
+                    <div class="header web-bg" fxLayout="row" fxLayoutAlign="center center">
+
+                        <div class="category job-title" fxFlex>
+                            Job Title : {{bidder.username}}
+                        </div>
+                        <!-- <div class="job-price">Job price : {{bidder.}}</div> -->
+                        <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                            <div class="min job-status"> Job Status : {{bidder.zipcode}} </div>
+                        </div>
+
+                    </div>
+
+                    <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+
+                        <div class="updated">{{bidder.email}}</div>
+                    </div>
+
+                    <!-- <div class="footer start-btn" fxLayout="row" fxLayoutAlign="center center">
+                        <button mat-button color="accent" [routerLink]="['/bidder/job-details', job.id]">
+                            Details
+                        </button>
+                    </div> -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

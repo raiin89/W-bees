@@ -22,7 +22,7 @@
                 <div fxLayout="column" fxLayoutAlign="start start"
                      [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2">
-                        {{jobDetails.title}}<!-- Order {{order.reference}} -->
+                        {{jobDetails && jobDetails.title}}<!-- Order {{order.reference}} -->
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                                 <br>
                                 <div fxLayout="row" fxLayoutAlign="start start">
                                     <div class="note">
-                                        {{jobDetails.description}}
+                                        {{jobDetails &&jobDetails.description}}
                                         <!-- In condimentum malesuada efficitur. Mauris volutpat placerat auctor.
                                         Ut ac congue dolor. Quisque scelerisque lacus sed feugiat fermentum.
                                         Cras aliquet facilisis pellentesque. Nunc hendrerit quam at leo

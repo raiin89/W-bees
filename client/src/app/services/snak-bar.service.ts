@@ -17,7 +17,7 @@ export class SnakBarService {
 
   success(message: string): void{
       this.snakbar.open(message, 'success!', {
-        duration: 2000,
+        duration: 3000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
       });
@@ -25,7 +25,7 @@ export class SnakBarService {
 
   error(message: string): void{
     this.snakbar.open(message, 'error!', {
-      duration: 2000,
+      duration: 3000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });

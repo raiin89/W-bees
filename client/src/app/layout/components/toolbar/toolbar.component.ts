@@ -100,47 +100,31 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         if (user) {
             user = JSON.parse(user);
             const role = user['userRoleId'];
-
+            this._fuseNavigationService.unregister('main');
             if (role === 1) {
                 this.navigation = navigation;
-                // Register the navigation to the service
-                this._fuseNavigationService.register('main', this.navigation);
 
-                // Set the main navigation as our current navigation
-                this._fuseNavigationService.setCurrentNavigation('main');
-
-                // Add languages
-                this._translateService.addLangs(['en', 'tr']);
-
-                // Set the default language
-                this._translateService.setDefaultLang('en');
-
-                // Set the navigation translations
-                this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
-
-                // Use a language
-                this._translateService.use('en');
             } else {
                 this.navigation = navigationSeeker;
-                // Register the navigation to the service
-                this._fuseNavigationService.register('main', this.navigation);
-
-                // Set the main navigation as our current navigation
-                this._fuseNavigationService.setCurrentNavigation('main');
-
-                // Add languages
-                this._translateService.addLangs(['en', 'tr']);
-
-                // Set the default language
-                this._translateService.setDefaultLang('en');
-
-                // Set the navigation translations
-                this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
-
-                // Use a language
-                this._translateService.use('en');
-
             }
+
+            // Register the navigation to the service
+            this._fuseNavigationService.register('main', this.navigation);
+
+            // Set the main navigation as our current navigation
+            this._fuseNavigationService.setCurrentNavigation('main');
+
+            // Add languages
+            this._translateService.addLangs(['en', 'tr']);
+
+            // Set the default language
+            this._translateService.setDefaultLang('en');
+
+            // Set the navigation translations
+            this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
+
+            // Use a language
+            this._translateService.use('en');
 
 
         }
@@ -228,6 +212,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             .then(res => {
                 localStorage.clear();
                 this.router.navigate(['/login']);
+                this._fuseNavigationService.unregister('main');
                 this.snakbar.success('You logged out successfully.');
             }, err => {
                 this.snakbar.error(err.message);

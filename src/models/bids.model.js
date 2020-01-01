@@ -16,7 +16,7 @@ module.exports = function (app) {
     },
     status: {
       type: DataTypes.ENUM('accepted', 'declined', 'pending'),
-      default: 'pending'
+      defaultValue: 'pending'
     }
   }, {
     hooks: {

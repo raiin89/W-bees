@@ -45,4 +45,9 @@ export class Feathers {
   public get(serviceName, query): Promise<any> {
     return this._feathers.service(serviceName).get(query);
   }
+
+  public patch(serviceName, query): Promise<any> {
+    console.log('query', query);
+    return this._feathers.service(serviceName).patch(query.id, query.updates);
+  }
 }

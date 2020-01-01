@@ -143,7 +143,7 @@ export class FuseNavigationService
         // Check if the navigation exists
         if ( !this._registry[key] )
         {
-            console.warn(`The navigation with the key '${key}' doesn't exist in the registry.`);
+            // console.warn(`The navigation with the key '${key}' doesn't exist in the registry.`);
         }
 
         // Unregister the sidebar
@@ -164,7 +164,7 @@ export class FuseNavigationService
         // Check if the navigation exists
         if ( !this._registry[key] )
         {
-            console.warn(`The navigation with the key '${key}' doesn't exist in the registry.`);
+            // console.warn(`The navigation with the key '${key}' doesn't exist in the registry.`);
 
             return;
         }
@@ -212,7 +212,7 @@ export class FuseNavigationService
     {
         if ( !this._currentNavigationKey )
         {
-            console.warn(`The current navigation is not set.`);
+            // console.warn(`The current navigation is not set.`);
 
             return;
         }

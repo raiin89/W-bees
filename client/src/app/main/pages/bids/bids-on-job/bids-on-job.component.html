@@ -1,0 +1,41 @@
+<!-- <p>bids-on-job works!</p> -->
+<div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'50'}">
+
+    <div class="course web card-head" *ngFor="let bid of bidsList" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33"
+        [@animate]="{value:'*',params:{y:'100%'}}">
+
+        <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
+
+            <div class="header web-bg" fxLayout="row" fxLayoutAlign="center center">
+
+                <div class="category job-title" fxFlex>
+                    Bid id : {{bid && bid.id}}
+                </div>
+                <div class="job-price">Bid price : {{bid.price}}</div>
+                <!-- <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                    <div class="min job-status"> Bid Status : {{bid.status}} </div>
+                </div> -->
+
+            </div>
+
+            <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+
+                <div class="updated">{{bid.description}}</div>
+            </div>
+
+            <div class="footer start-btn" fxLayout="row" fxLayoutAlign="center center">
+                <button mat-button color="accent" (click)="acceptBid(bid.id)">
+                    Accept
+                </button>
+                <button mat-button color="accent" (click)="declineBid(bid.id)">
+                    Decline
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="no-courses" *ngIf="bidsList && bidsList.length === 0">
+        No bids found for this job!
+    </div>
+</div>

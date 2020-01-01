@@ -7,17 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 // Material imports
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule} from '@angular/material';
+import { MatInputModule, MatDialogModule} from '@angular/material';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 const jobRoutes: Routes = [
-    // {
-    //     path        : 'jobs',
-    //     component   : MyJobsComponent
-    // },
     {
         path        : 'my-jobs',
         component   : MyJobsComponent
@@ -32,7 +29,7 @@ const jobRoutes: Routes = [
 @NgModule({
     declarations: [
         MyJobsComponent,
-        AddNewJobComponent
+        AddNewJobComponent,
     ],
     imports: [
         CommonModule,
@@ -40,6 +37,7 @@ const jobRoutes: Routes = [
         ReactiveFormsModule,
 
         // Material
+        MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,

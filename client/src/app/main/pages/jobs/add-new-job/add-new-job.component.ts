@@ -4,6 +4,7 @@ import { fuseAnimations } from '@fuse/animations';
 
 import { Feathers } from 'feather.service';
 import { SnakBarService } from '../../../../services/snak-bar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-new-job',
@@ -19,7 +20,8 @@ export class AddNewJobComponent implements OnInit {
   constructor(
       private formBuilder: FormBuilder,
       private snakbar: SnakBarService,
-      private feathers: Feathers
+      private feathers: Feathers,
+      private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class AddNewJobComponent implements OnInit {
     })
     .then(res => {
         this.snakbar.success('You added a job succesfully.');
+        this.router.navigate(['/jobs/my-jobs']);
         // this.jobsForm.reset();
     }, err => {
         console.log('err', err);

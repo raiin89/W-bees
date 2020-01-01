@@ -1,11 +1,11 @@
 <!-- <div class="content p-24"> -->
 
-    <!-- <div fxLayout="column" fxLayoutAlign="center"> -->
+<!-- <div fxLayout="column" fxLayoutAlign="center"> -->
 
 <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'50'}">
 
-    <div class="course web" *ngFor="let job of myJobs" fxFlex="100" fxFlex.gt-xs="50"
-         fxFlex.gt-sm="33" [@animate]="{value:'*',params:{y:'100%'}}">
+    <div class="course web" *ngFor="let job of myJobs" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33"
+        [@animate]="{value:'*',params:{y:'100%'}}">
 
         <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
 
@@ -28,9 +28,8 @@
             </div>
 
             <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                <button mat-button color="accent"
-                        [routerLink]="'/apps/academy/courses/' + job.id + '/' + job.slug">
-                    START
+                <button mat-button color="accent" [routerLink]="['/bids/bids-on-job', job.id]">
+                    Bids Detail
                 </button>
             </div>
 
@@ -38,9 +37,9 @@
 
     </div>
 
-    <div class="no-courses" *ngIf="myJobs.length === 0">
-        No courses found!
+    <div class="no-courses" *ngIf="myJobs && myJobs.length === 0">
+        No job found!
     </div>
 
     <!-- </div> -->
-    <!-- </div> -->
+</div>
