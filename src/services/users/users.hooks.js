@@ -12,10 +12,14 @@ const addUserRoleToUsers = require("../../hooks/add-user-role-to-users");
 
 const getUserRoles = require("../../hooks/get-user-roles");
 
+const getNearByBidders = require('../../hooks/get-near-by-bidders');
+
+const clearQueryString = require('../../hooks/clear-query-string');
+
 module.exports = {
   before: {
     all: [],
-    find: [authenticate("jwt")],
+    find: [authenticate("jwt"), clearQueryString()],
     get: [authenticate("jwt")],
     create: [
       hashPassword("password"),
@@ -51,7 +55,7 @@ module.exports = {
       protect("password"),
       protect("securityAnswer")
     ],
-    find: [],
+    find: [getNearByBidders()],
     get: [getUserRoles()],
     create: [
       context => {

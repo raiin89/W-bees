@@ -17,17 +17,16 @@
 
         <!-- CONTENT -->
         <div class="content-card">
-            <div class="course web card-head" *ngFor="let bidder of bidders" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33"
-                [@animate]="{value:'*',params:{y:'100%'}}">
+            <div class="course web card-head" fxFlex="100" fxFlex.gt-xs="50"
+                fxFlex.gt-sm="33" [@animate]="{value:'*',params:{y:'100%'}}">
 
-                <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
+                <!-- <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
 
                     <div class="header web-bg" fxLayout="row" fxLayoutAlign="center center">
 
                         <div class="category job-title" fxFlex>
                             Job Title : {{bidder.username}}
                         </div>
-                        <!-- <div class="job-price">Job price : {{bidder.}}</div> -->
                         <div class="length" fxLayout="row" fxLayoutAlign="center center">
                             <div class="min job-status"> Job Status : {{bidder.zipcode}} </div>
                         </div>
@@ -37,7 +36,7 @@
                     <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
 
                         <div class="updated">{{bidder.email}}</div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="footer start-btn" fxLayout="row" fxLayoutAlign="center center">
                         <button mat-button color="accent" [routerLink]="['/bidder/job-details', job.id]">
@@ -45,7 +44,34 @@
                         </button>
                     </div> -->
 
-                </div>
+                <!-- </div> -->
+
+                <mat-card class="content-card" *ngFor="let bidder of bidders">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>{{bidder.username}}</mat-card-title>
+                        <mat-card-subtitle>{{bidder.email}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                        alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <p>
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                            originally
+                            bred for hunting.
+                        </p>
+                    </mat-card-content> -->
+                    <mat-card-actions>
+                        <div class="card-bottom">
+                            <button mat-raised-button color="primary">Connect</button>
+                            <div>
+                                <mat-icon>location_on</mat-icon>{{(bidder.distance / 1000).toFixed(2)}} KM
+                            </div>
+                        </div>
+                    </mat-card-actions>
+                </mat-card>
 
             </div>
         </div>

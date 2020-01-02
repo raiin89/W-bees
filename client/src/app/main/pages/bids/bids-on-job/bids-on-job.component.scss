@@ -101,7 +101,18 @@
     cursor: pointer;
 }
 
-// .bid-response-btn{
-//     display: flex;
-//     justify-content: space-between;
+.bidder-name {
+    font-size: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// .contact-last-message {
+//     line-height: normal;
+//     margin-top: 0;
 // }
+
+.bidder-email {
+    font-size: 12px;
+    margin-top: 4px;
+}

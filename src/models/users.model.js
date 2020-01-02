@@ -3,7 +3,7 @@
 const Sequelize = require("sequelize");
 const DataTypes = Sequelize.DataTypes;
 
-module.exports = function(app) {
+module.exports = function (app) {
   const sequelizeClient = app.get("sequelizeClient");
   const users = sequelizeClient.define(
     "users",
@@ -25,23 +25,27 @@ module.exports = function(app) {
         type: DataTypes.STRING,
         allowNull: false
       },
-      isVerified: { 
-        type: DataTypes.BOOLEAN 
+      location: {
+        type: DataTypes.GEOMETRY('POINT'),
+        allowNull: false
       },
-      verifyToken: { 
-        type: DataTypes.STRING 
+      isVerified: {
+        type: DataTypes.BOOLEAN
+      },
+      verifyToken: {
+        type: DataTypes.STRING
       },
       verifyExpires: {
-        type: DataTypes.DATE 
+        type: DataTypes.DATE
       },
-      verifyChanges: { 
-        type: DataTypes.JSON 
+      verifyChanges: {
+        type: DataTypes.JSON
       },
-      resetToken: { 
-        type: DataTypes.STRING 
+      resetToken: {
+        type: DataTypes.STRING
       },
-      resetExpires: { 
-        type: DataTypes.DATE 
+      resetExpires: {
+        type: DataTypes.DATE
       }
     },
     {
@@ -56,7 +60,7 @@ module.exports = function(app) {
   );
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function(models) {
+  users.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
     users.belongsTo(models.user_roles, {

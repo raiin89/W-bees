@@ -11,19 +11,28 @@ import { Feathers } from 'feather.service';
 export class NearByBiddersComponent implements OnInit {
 
     bidders: any;
-
+    location: any;
     constructor(
         private feather: Feathers
     ) { }
 
     ngOnInit(): void {
+        if (localStorage.getItem('user-details') !== undefined){
+            this.location = JSON.parse(localStorage.getItem('user-details')).location.coordinates;
+            console.log('location', this.location);
+        }
+        this.getBiddersList();
     }
 
     getBiddersList = () => {
-        this.feather.find('users',{
-            query: {
-                userRoleId: 2
-            }
+        const request = {
+            userRoleId: 2,
+            lat: this.location[0],
+            long: this.location[1]
+        };
+        console.log('request: ', request);
+        this.feather.find('users', {
+            query: request
         })
         .then(res => {
             this.bidders = res;

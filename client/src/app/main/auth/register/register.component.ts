@@ -13,16 +13,17 @@ import { Router } from '@angular/router';
 import { SnakBarService } from '../../../services/snak-bar.service';
 
 @Component({
-    selector     : 'register',
-    templateUrl  : './register.component.html',
-    styleUrls    : ['./register.component.scss'],
+    selector: 'register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class RegisterComponent implements OnInit, OnDestroy
-{
+export class RegisterComponent implements OnInit, OnDestroy {
     registerForm: FormGroup;
-
+    location: any = {
+        type: 'Point'
+    };
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -32,18 +33,17 @@ export class RegisterComponent implements OnInit, OnDestroy
         private router: Router,
         private snakBarService: SnakBarService,
         private feathers: Feathers
-    )
-    {
+    ) {
         // Configure the layout
         this._fuseConfigService.config = {
             layout: {
-                navbar   : {
+                navbar: {
                     hidden: true
                 },
-                toolbar  : {
+                toolbar: {
                     hidden: true
                 },
-                footer   : {
+                footer: {
                     hidden: true
                 },
                 sidepanel: {
@@ -63,15 +63,14 @@ export class RegisterComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         this.registerForm = this._formBuilder.group({
-            username            :   ['', Validators.required],
-            email               :   ['', [Validators.required, Validators.email]],
-            zipcode             :   ['', Validators.required],
-            role                :   ['', Validators.required],
-            password            :   ['', Validators.required],
-            passwordConfirm     :   ['', [Validators.required, confirmPasswordValidator]]
+            username: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+            zipcode: ['', Validators.required],
+            role: ['', Validators.required],
+            password: ['', Validators.required],
+            passwordConfirm: ['', [Validators.required, confirmPasswordValidator]]
         });
 
         // Update the validity of the 'passwordConfirm' field
@@ -81,19 +80,38 @@ export class RegisterComponent implements OnInit, OnDestroy
             .subscribe(() => {
                 this.registerForm.get('passwordConfirm').updateValueAndValidity();
             });
+
+        this.getCurrentPosition();
     }
 
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
 
-    submitRegisterForm(registerFormData): void {
+    getCurrentPosition = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                // this.location.coordinates = [
+                //     position.coords.latitude,
+                //     position.coords.longitude
+                // ];
+                this.location.coordinates = [
+                    28.7041,
+                    77.1025
+                ];
+                console.log('pos', this.location);
+            });
+        }
+    }
+
+    async submitRegisterForm(registerFormData): Promise<any> {
+        registerFormData.location = this.location;
+        console.log('registerForm', registerFormData);
         this.feathers.create('users', {
             ...registerFormData
         }).then(res => {
@@ -103,6 +121,7 @@ export class RegisterComponent implements OnInit, OnDestroy
             this.snakBarService.error(err.message);
         });
     }
+
 }
 
 /**
@@ -113,28 +132,24 @@ export class RegisterComponent implements OnInit, OnDestroy
  */
 export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 
-    if ( !control.parent || !control )
-    {
+    if (!control.parent || !control) {
         return null;
     }
 
     const password = control.parent.get('password');
     const passwordConfirm = control.parent.get('passwordConfirm');
 
-    if ( !password || !passwordConfirm )
-    {
+    if (!password || !passwordConfirm) {
         return null;
     }
 
-    if ( passwordConfirm.value === '' )
-    {
+    if (passwordConfirm.value === '') {
         return null;
     }
 
-    if ( password.value === passwordConfirm.value )
-    {
+    if (password.value === passwordConfirm.value) {
         return null;
     }
 
-    return {passwordsNotMatching: true};
+    return { passwordsNotMatching: true };
 };

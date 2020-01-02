@@ -4,15 +4,11 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
   return async context => {
-    const { app, data } = context;
-    // console.log(data)
-    const roleDetails = await app.service('user-roles').find({
-      query: {
-        type: data.role
-      }
-    });
-    console.log(roleDetails)
-    context.data.userRoleId = roleDetails[0].id;
+    if(context.params.query.hasOwnProperty('lat')){
+      context.params.data = { latitude: context.params.query.lat, longitude: context.params.query.long }
+      delete context.params.query.lat
+      delete context.params.query.long
+    }
     return context;
   };
 };

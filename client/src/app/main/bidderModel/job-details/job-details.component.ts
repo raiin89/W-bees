@@ -45,11 +45,12 @@ export class JobDetailsComponent implements OnInit {
 
   submitBid = (bidForms) => {
 
+    console.log('job details', this.jobDetails);
     bidForms.jobId = this.jobDetails.id;
     this.feather.create('bids', {
       ...bidForms
     }).then(res => {
-      this.snakbar.success('You added a job succesfully.');
+      this.snakbar.success('Your bid for job: ' + this.jobDetails.title + ' submitted succesfully.');
       this.router.navigate(['/bidder/near-by-jobs']);
     }, err => {
         console.log('err', err);

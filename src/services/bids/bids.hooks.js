@@ -2,6 +2,8 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 
 const addCreatedByHook = require('../../hooks/add-created-by-hook');
 
+const attachBidderDetailsToBids = require('../../hooks/attach-bidder-details-to-bids');
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
@@ -15,7 +17,7 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
+    find: [attachBidderDetailsToBids()],
     get: [],
     create: [],
     update: [],

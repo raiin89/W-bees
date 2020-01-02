@@ -18,7 +18,21 @@
 
             </div>
 
-            <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+            <div class="content" fxLayout="column" fxFlex="1 1 auto">
+                <div class="pb-16 bottom-line" fxLayout="row" fxLayoutAlign="start center">
+                    <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg">
+                    <div class="h2 secondary-text bidder-name">{{bid.bidder && bid.bidder.name}}</div>
+                    <div class="h2 secondary-text bidder-email">{{bid.bidder && bid.bidder.email}}</div>
+                </div> <br>
+                <!-- <div class="bottom-line" fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="0 1 auto" fxLayoutAlign="center center">
+                        <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg">
+                    </div>
+                    <div fxLayout="row" fxFlex>
+                        <div class="h2 secondary-text">Name</div>
+                        <div class="h2 secondary-text">Customer</div>
+                    </div>
+                </div> <br> -->
 
                 <div class="updated">{{bid.description}}</div>
             </div>
