@@ -11,7 +11,7 @@ module.exports = function (app) {
       allowNull: false
     },
     status: {
-      type: DataTypes.ENUM['sent', 'received', 'read'],
+      type: DataTypes.ENUM('sent', 'received', 'read'),
       allowNull: false
     }
   }, {
