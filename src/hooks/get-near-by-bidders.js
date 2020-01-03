@@ -16,7 +16,7 @@ module.exports = (options = {}) => {
       return 1
     })
 
-    context.result = sortedBidders
+    context.dispatch = sortedBidders
     return context;
   };
 };

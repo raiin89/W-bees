@@ -54,6 +54,24 @@
                     </mat-error>
                 </mat-form-field>
 
+                <div fxLayout="row" fxLayoutAlign="start center" class="location-fields">
+
+                    <mat-form-field appearance="outline" class="lat-long-col">
+                        <mat-label>Latitude</mat-label>
+                        <input matInput formControlName="lat" >
+                        <!-- <mat-icon matSuffix class="secondary-text">account_circle</mat-icon> -->
+                        <mat-error>First Name is required!</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="lat-long-col left">
+                        <mat-label>Longitude</mat-label>
+                        <input matInput formControlName="long" >
+                        <!-- <mat-icon matSuffix class="secondary-text">account_circle</mat-icon> -->
+                        <mat-error>Last Name is required!</mat-error>
+                    </mat-form-field>
+
+                </div>
+
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
                     <input matInput type="password" formControlName="password">

@@ -111,27 +111,14 @@ register {
                     }
                 }
 
-                button {
+                .location-fields{
+                    justify-content: space-between;
 
-                    &.google,
-                    &.facebook {
-                        width: 192px;
-                        text-transform: none;
-                        color: #FFFFFF;
-                        font-size: 13px;
+                    .lat-long-col{
+                        max-width: 158px;
                     }
-
-                    @include media-breakpoint('xs') {
-                        width: 80%;
-                    }
-
-                    &.google {
-                        background-color: #D73D32;
-                        margin-bottom: 8px;
-                    }
-
-                    &.facebook {
-                        background-color: rgb(63, 92, 154);
+                    .left{
+                        margin-left: 5px;
                     }
                 }
             }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators, FormArray } from '@angular/forms';
 import { Subject, from } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators';
 
@@ -69,6 +69,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
             email: ['', [Validators.required, Validators.email]],
             zipcode: ['', Validators.required],
             role: ['', Validators.required],
+            lat: ['', Validators.required],
+            long: ['', Validators.required],
             password: ['', Validators.required],
             passwordConfirm: ['', [Validators.required, confirmPasswordValidator]]
         });
@@ -81,7 +83,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
                 this.registerForm.get('passwordConfirm').updateValueAndValidity();
             });
 
-        this.getCurrentPosition();
+        // this.getCurrentPosition();
     }
 
     /**
@@ -101,24 +103,36 @@ export class RegisterComponent implements OnInit, OnDestroy {
                     position.coords.latitude,
                     position.coords.longitude
                 ];
-                this.location.coordinates = [
-                    28.7041,
-                    77.1025
-                ];
+                // this.location.coordinates = [
+                //     28.7041,
+                //     77.1025
+                // ];
                 console.log('pos', this.location);
             });
-        }else{
+        } else {
             console.log('Navigator.geolocation not working');
-            this.location.coordinates = [ 0, 0 ];
+            this.location.coordinates = [0, 0];
             console.log('else pos', this.location);
         }
     }
 
     async submitRegisterForm(registerFormData): Promise<any> {
         registerFormData.location = this.location;
-        console.log('registerForm', registerFormData);
+        const newForm = {
+            username: registerFormData.username,
+            email: registerFormData.email,
+            zipcode: registerFormData.zipcode,
+            role: registerFormData.role,
+            location: {
+                type: 'Point',
+                coordinates: [Number(registerFormData.lat), Number(registerFormData.long)]
+            },
+            password: registerFormData.password,
+            passwordConfirm: registerFormData.passwordConfirm
+        };
+        console.log('registerForm', newForm);
         this.feathers.create('users', {
-            ...registerFormData
+            ...newForm
         }).then(res => {
             this.snakBarService.success('Congratulations!!!, Your account verification email is sent to the email address you provided.');
             // setTimeout(() => { this.router.navigate(['/login']); }, 2000);
