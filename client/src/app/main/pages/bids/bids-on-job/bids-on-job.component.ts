@@ -41,31 +41,33 @@ export class BidsOnJobComponent implements OnInit {
     acceptBid = (bidId: any) => {
         console.log('acceptBid BidId', bidId);
         this.feather.patch('bids', {
-                id: bidId,
-                updates: {
-                    status: 'accepted'
-                }
+            id: bidId,
+            updates: {
+                status: 'accepted'
+            }
         })
         .then(res => {
-    console.log('res', res);
-}, err => {
-    console.log('err', err);
-});
+            console.log('res', res);
+            this.getBidsOnJob();
+        }, err => {
+            console.log('err', err);
+        });
     }
 
-declineBid = (bidId: any) => {
-    console.log('declineBid BidId', bidId);
-    this.feather.patch('bids', {
-        id: bidId,
-        updates: {
-            status: 'declined'
-        }
-    })
-    .then(res => {
-        console.log('res', res);
-    }, err => {
-        console.log('err', err);
-    });
-}
+    declineBid = (bidId: any) => {
+        console.log('declineBid BidId', bidId);
+        this.feather.patch('bids', {
+            id: bidId,
+            updates: {
+                status: 'declined'
+            }
+        })
+        .then(res => {
+            console.log('res', res);
+            this.getBidsOnJob();
+        }, err => {
+            console.log('err', err);
+        });
+    }
 
 }

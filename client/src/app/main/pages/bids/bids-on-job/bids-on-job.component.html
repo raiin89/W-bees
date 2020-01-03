@@ -34,15 +34,21 @@
                     </div>
                 </div> <br> -->
 
-                <div class="updated">{{bid.description}}</div>
+                <div class="updated">{{bid && bid.description}}</div>
             </div>
 
-            <div class="footer start-btn" fxLayout="row" fxLayoutAlign="center center">
+            <div class="footer start-btn" *ngIf="bid && bid.status === 'pending'" fxLayout="row" fxLayoutAlign="center center">
                 <button mat-button color="accent" (click)="acceptBid(bid.id)">
                     Accept
                 </button>
                 <button mat-button color="accent" (click)="declineBid(bid.id)">
                     Decline
+                </button>
+            </div>
+
+            <div class="footer start-btn status-btn" *ngIf="bid && bid.status !== 'pending'">
+                <button mat-button color="primary" (click)="acceptBid(bid.id)">
+                    {{bid && bid.status | uppercase}}
                 </button>
             </div>
 
