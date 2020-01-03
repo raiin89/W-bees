@@ -85,6 +85,8 @@ $typography: mat-typography-config(
 @import "src/app/main/auth/login/login.theme";
 @import "src/app/main/auth/register/register.theme";
 @import "src/app/main/auth/forgot-password/forgot-password.theme";
+@import "src/app/main/common-components/chat-panel-copy/chat-panel-copy.theme";
+
 // @import "src/app/main/auth/verify/verify.theme";
 
 // Define a mixin for easier access
@@ -93,6 +95,8 @@ $typography: mat-typography-config(
     // Layout components
     @include chat-panel-theme($theme);
     @include toolbar-theme($theme);
+    @include chat-panel-copy-theme($theme);
+
 
     // pages Auth
     @include login-theme($theme);

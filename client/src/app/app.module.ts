@@ -36,6 +36,8 @@ import { ProviderJobCardComponent } from './main/common-components/provider-job-
 // import { SeekerPendingJobsComponent } from './main/bidderModel/seeker-pending-jobs/seeker-pending-jobs.component';
 // import { SeekerApprovedJobsComponent } from './main/bidderModel/seeker-approved-jobs/seeker-approved-jobs.component';
 import { BidderModule } from './main/bidderModel/bidder-module.module';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FakeDbService } from './fake-db/fake-db.service';
 
 const appRoutes: Routes = [
     {
@@ -139,7 +141,11 @@ const appRoutes: Routes = [
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        MatGridListModule
+        MatGridListModule,
+        InMemoryWebApiModule.forRoot(FakeDbService, {
+            delay             : 0,
+            passThruUnknownUrl: true
+        }),
     ],
     bootstrap: [
         AppComponent

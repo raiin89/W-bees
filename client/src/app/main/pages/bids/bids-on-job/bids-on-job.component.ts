@@ -28,7 +28,7 @@ export class BidsOnJobComponent implements OnInit {
     getBidsOnJob = () => {
         this.feather.find('bids', {
             query: {
-                jobId: 1
+                jobId: this.jobId
             }
         }).then(res => {
             console.log('res', res);

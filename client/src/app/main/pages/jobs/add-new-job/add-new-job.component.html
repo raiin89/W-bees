@@ -15,9 +15,13 @@
                     <mat-label>Job Category</mat-label>
                     <mat-select formControlName="categoryId">
                         <mat-option>None</mat-option>
-                        <mat-option value="1">Test</mat-option>
-                        <mat-option value="2">Demo</mat-option>
-                        <mat-option value="3">Work</mat-option>
+                        <mat-option value="1">Cleaning</mat-option>
+                        <mat-option value="2">Moving</mat-option>
+                        <mat-option value="3">Maintenance</mat-option>
+                        <mat-option value="4">Gardening</mat-option>
+                        <mat-option value="5">Pet-Setting</mat-option>
+                        <mat-option value="6">Furniture Assembly</mat-option>
+                        <mat-option value="7">Packing</mat-option>
                     </mat-select>
                     <mat-error *ngIf="jobsForm.get('categoryId').hasError('required')">
                         *Job category is required

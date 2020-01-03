@@ -73,6 +73,10 @@
                     </mat-card-actions>
                 </mat-card>
 
+                <div class="no-courses" *ngIf="bidders && bidders.length === 0">
+                    No job found!
+                </div>
+
             </div>
         </div>
     </div>

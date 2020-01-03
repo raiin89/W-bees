@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { FuseUtils } from '@fuse/utils';
-import { Feathers } from 'feather.service';
 
 @Injectable()
 export class ChatPanelService
@@ -17,18 +16,10 @@ export class ChatPanelService
      * @param {HttpClient} _httpClient
      */
     constructor(
-        private _httpClient: HttpClient,
-        private feathers: Feathers
+        private _httpClient: HttpClient
     )
     {
     }
-
-    // Use W-Bees Feather Service
-
-    // getWbeesUsers(): Promise<any> | any
-    // {
-    //     return this.feathers.get
-    // }
 
     /**
      * Loader

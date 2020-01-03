@@ -12,6 +12,7 @@ import { QuickPanelModule } from 'app/layout/components/quick-panel/quick-panel.
 import { ToolbarModule } from 'app/layout/components/toolbar/toolbar.module';
 
 import { VerticalLayout1Component } from 'app/layout/vertical/layout-1/layout-1.component';
+import { ChatPanelCopyModule } from 'app/main/common-components/chat-panel-copy/chat-panel-copy.module';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { VerticalLayout1Component } from 'app/layout/vertical/layout-1/layout-1.
         FuseSidebarModule,
 
         ChatPanelModule,
+        ChatPanelCopyModule,
         ContentModule,
         FooterModule,
         NavbarModule,

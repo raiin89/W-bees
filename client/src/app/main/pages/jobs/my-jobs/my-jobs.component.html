@@ -12,24 +12,27 @@
             <div class="header web-bg" fxLayout="row" fxLayoutAlign="center center">
 
                 <div class="category" fxFlex>
-                    {{job.title}}
+                    {{job && job.title | uppercase}}
                 </div>
-
+                <div class="h3">Price: {{job && job.price}}</div>
                 <div class="length" fxLayout="row" fxLayoutAlign="center center">
                     <!-- <mat-icon class="length-icon s-20">access_time</mat-icon> -->
-                    <div class="min">{{job.status}} </div>
+                    <div class="min">Job Status: {{job && job.status | uppercase}} </div>
                 </div>
 
             </div>
 
             <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
-                <div class="h1">{{job.price}}</div>
-                <div class="updated">Updated {{job.description}}</div>
+
+                <div class="updated">{{job && job.description}}</div>
             </div>
 
             <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                <button mat-button color="accent" [routerLink]="['/bids/bids-on-job', job.id]">
+                <button mat-button color="accent" [routerLink]="['/bids/bids-on-job', job.id]" fxFlex>
                     Bids Detail
+                </button>
+                <button mat-button color="accent" fxFlex>
+                    Total Bids: {{job && job.bids}}
                 </button>
             </div>
 
