@@ -95,17 +95,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     getCurrentPosition = () => {
         if (navigator.geolocation) {
+            console.log('Enter in navigator.geolocation');
             navigator.geolocation.getCurrentPosition(position => {
-                // this.location.coordinates = [
-                //     position.coords.latitude,
-                //     position.coords.longitude
-                // ];
+                this.location.coordinates = [
+                    position.coords.latitude,
+                    position.coords.longitude
+                ];
                 this.location.coordinates = [
                     28.7041,
                     77.1025
                 ];
                 console.log('pos', this.location);
             });
+        }else{
+            console.log('Navigator.geolocation not working');
+            this.location.coordinates = [ 0, 0 ];
+            console.log('else pos', this.location);
         }
     }
 
