@@ -1,0 +1,111 @@
+<div id="about" class="p-24" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+        <div class="profile-box info-box general" fxLayout="column">
+
+            <header class="accent info-header" fxLayout="row">
+                <div class="title" fxFlex>Personal Information</div>
+                <span>
+                    <mat-icon *ngIf="!editProfile" (click)="handleProfileUpdate()">edit</mat-icon>
+                    <mat-icon *ngIf="editProfile" (click)="handleProfileUpdate()">done_outline</mat-icon>
+                </span>
+            </header>
+
+            <div class="content">
+                <div class="info-line">
+                    <div class="title">Profile Type</div>
+                    <div class="info">{{userData.role | titlecase}}</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Email</div>
+                    <div class="info">{{userData.email}}</div>
+                    <div><input type="email" placeholder=""/></div>
+                </div>
+
+                <!-- <div class="info-line">
+                    <div class="title">Locations</div>
+                    <div class="info location" fxLayout="row" fxLayoutAlign="start center">
+                    //     *ngFor="let location of about.general.locations">
+                        <span>London, UK <br/> New York USA</span>
+                        <mat-icon class="s-16 ml-4">location_on</mat-icon>
+                    </div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">About Me</div>
+                    <div class="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                </div> -->
+            </div>
+
+        </div>
+
+        <!-- <div class="profile-box info-box work" fxLayout="column">
+
+            <header class="accent">
+                <div class="title">Work</div>
+            </header>
+
+            <div class="content">
+                <div class="info-line">
+                    <div class="title">Occupation</div>
+                    <div class="info">Developer</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Skills</div>
+                    <div class="info">C#, PHP, Javascript, Angular, JS, HTML, CSS</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Jobs</div>
+                    <table class="info jobs">
+                        <tr class="job" >
+                        //     *ngFor="let job of about.work.jobs"
+                            <td class="company">Self-Employed</td>
+                            <td class="date">2010 - Now</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-box info-box contact" fxLayout="column">
+
+            <header class="accent">
+                <div class="title">Contact</div>
+            </header>
+
+            <div class="content">
+                <div class="info-line">
+                    <div class="title">Address</div>
+                    <div class="info">Ut pharetra luctus est quis sodales. </div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Tel.</div>
+                    <div class="info" >
+                //    *ngFor="let tel of about.contact.tel">
+                        <span>+6 555 6600</span>
+                    </div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Website</div>
+                    <div class="info" >
+                        //  *ngFor="let website of about.contact.websites"
+                        <span>withinpixels.com</span>
+                    </div>
+                </div>
+                <div class="info-line">
+                    <div class="title">Emails</div>
+                    <div class="info" >
+                //    *ngFor="let email of about.contact.emails">
+                        <span>mail@withinpixels.com</span>
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+
+    </div>
+</div>

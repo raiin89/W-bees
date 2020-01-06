@@ -1,0 +1,74 @@
+<div id="profile" class="page-layout simple tabbed">
+
+    <!-- HEADER -->
+    <div class="header p-24" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+        fxLayoutAlign.gt-sm="space-between end">
+
+        <div class="user-info" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="start center">
+            <span class="span-ico">
+                    <img class="profile-image avatar huge" src="assets/images/avatars/Velazquez.jpg"
+                    [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}" (click)="uploadProfilePic()">
+                <mat-icon class="edit-ico" (click)="uploadProfilePic()">edit</mat-icon>
+            </span>
+            <div class="name" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                <div *ngIf="!editProfile">{{username }}</div>
+                <div *ngIf="editProfile">
+                    <form name="profileOne" [formGroup]="profileOne">
+                        <mat-form-field appearance="outline" class="editName">
+                            <input matInput placeholder="Name" formControlName="username">
+                        </mat-form-field>
+                        <mat-error *ngIf="profileOne.get('username').hasError('required')">
+                            Name is required
+                        </mat-error>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div id="about" class="p-24" fxLayout="row wrap">
+            <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+                <div class="profile-box info-box general" fxLayout="column">
+                    <header class="accent info-header" fxLayout="row">
+                        <div class="title" fxFlex>Personal Information</div>
+                        <span *ngIf="!editProfile">
+                            <mat-icon (click)="handleProfileUpdate()">edit</mat-icon>
+                        </span>
+                        <span *ngIf="editProfile">
+                            <mat-icon (click)="handleProfileUpdate()">done_outline</mat-icon>
+                        </span>
+                    </header>
+
+                    <div class="content">
+                        <div class="info-line">
+                            <div class="title">Profile Type</div>
+                            <div class="info">{{ role | titlecase}}</div>
+                        </div>
+
+                        <div class="info-line">
+                            <div class="title">Email</div>
+                            <div class="info" *ngIf="!editProfile">{{ email}}</div>
+                            <div>
+                                <form *ngIf="editProfile" name="profileTwo" [formGroup]="profileTwo" class="email-form">
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="email" formControlName="email">
+                                    </mat-form-field>
+                                    <mat-error *ngIf="profileTwo.get('email').hasError('required')">
+                                        Email is required
+                                    </mat-error>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / CONTENT -->
+
+    </div>
+</div>

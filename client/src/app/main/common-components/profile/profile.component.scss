@@ -1,0 +1,136 @@
+@import "src/@fuse/scss/fuse";
+
+#profile {
+    .header {
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        background: url("/assets/images/backgrounds/dark-material-bg.jpg")
+            no-repeat 0 45%;
+        background-size: cover;
+
+        .profile-image {
+            margin-right: 0px;
+
+            @include media-breakpoint("sm") {
+                margin: 0 0 0px 0;
+            }
+        }
+
+        .name {
+            font-size: 34px;
+            color: #ffffff;
+            padding-left: 20px;
+
+            @include media-breakpoint("sm") {
+                margin-bottom: 32px;
+            }
+        }
+
+        .actions {
+            button {
+                text-transform: none;
+                padding: 0 16px;
+                margin: 0 0 0 8px;
+            }
+        }
+    }
+
+    .content {
+        flex: 1;
+
+        mat-tab-group {
+            height: 100%;
+
+            .mat-tab-body-wrapper {
+                flex-grow: 1;
+            }
+        }
+
+        #about {
+            max-width: 1200px;
+        }
+
+        // Profile boxes
+        .profile-box {
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            @include mat-elevation(2);
+
+            header {
+                padding: 16px;
+
+                .title {
+                    font-size: 17px;
+                }
+
+                .more {
+                    cursor: pointer;
+                }
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            footer {
+                padding: 8px;
+                border-top: 1px solid;
+            }
+
+            &.info-box {
+                .info-line {
+                    margin-bottom: 24px;
+
+                    .title {
+                        font-size: 15px;
+                        font-weight: 600;
+                        padding-bottom: 4px;
+                    }
+
+                    .info {
+                    }
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+.span-ico{position: relative;}
+.edit-ico{
+    position: absolute;
+    bottom: 0;
+    right: 8px;
+    margin: auto;
+    color: #ffffff;
+    background: rgb(47, 54, 72);
+    border-radius: 50%;
+    padding: 3px;
+    height: 28px;
+    width: 28px;
+}
+.editName {font-size: 34px;
+width: auto;
+max-width: initial;
+margin: 0;
+}.editName .mat-form-field-infix {
+    width: auto;
+    padding: 5px 0px;
+    border: none;
+}.editName .mat-form-field-outline{top:0 !important;}
+.editName .mat-form-field-wrapper{margin: 0;
+    padding: 0;}
+    .editName.mat-form-field-appearance-outline .mat-form-field-outline {
+        color: rgb(251, 251, 251) !important;
+    }.editName.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+        color: rgba(253, 253, 253, 0.87) !important;
+    }
+    .email-form .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 10px 0px;
+        border: none;
+        width: auto;
+    }

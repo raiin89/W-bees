@@ -86,6 +86,7 @@ $typography: mat-typography-config(
 @import "src/app/main/auth/register/register.theme";
 @import "src/app/main/auth/forgot-password/forgot-password.theme";
 @import "src/app/main/common-components/chat-panel-copy/chat-panel-copy.theme";
+@import "src/app/main/common-components/profile/tabs/about/about.theme";
 
 // @import "src/app/main/auth/verify/verify.theme";
 
@@ -102,6 +103,7 @@ $typography: mat-typography-config(
     @include login-theme($theme);
     @include register-theme($theme);
     @include forgot-password-theme($theme);
+    @include profile-about-theme($theme);
     // @include verify-theme($theme);
 
 }

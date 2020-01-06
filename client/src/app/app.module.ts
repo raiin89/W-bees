@@ -38,6 +38,7 @@ import { ProviderJobCardComponent } from './main/common-components/provider-job-
 import { BidderModule } from './main/bidderModel/bidder-module.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeDbService } from './fake-db/fake-db.service';
+import { ProfileModule } from './main/common-components/profile/profile.module';
 
 const appRoutes: Routes = [
     {
@@ -90,6 +91,10 @@ const appRoutes: Routes = [
         redirectTo: 'dashboard'
     },
     {
+        path: 'profile',
+        loadChildren: './main/common-components/profile/profile.module#ProfileModule'
+    },
+    {
         path: '**',
         redirectTo: ''
     }
@@ -136,6 +141,7 @@ const appRoutes: Routes = [
         LayoutModule,
         DashboardModule,
         BidderModule,
+        ProfileModule,
 
         MatCheckboxModule,
         MatFormFieldModule,
