@@ -4,6 +4,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Feathers } from 'feather.service';
 import { SnakBarService } from '../../../services/snak-bar.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-job-details',
@@ -13,7 +14,8 @@ import { SnakBarService } from '../../../services/snak-bar.service';
 })
 export class JobDetailsComponent implements OnInit {
 
-//   order: Order;
+  API = environment.API;
+
   bidForm: FormGroup;
   jobId: any;
   jobDetails: any;
@@ -37,6 +39,7 @@ export class JobDetailsComponent implements OnInit {
 
   getJobDetails(): void {
     this.feather.get('jobs', this.jobId).then(res => {
+        // console.log('job-details: ', res);
         this.jobDetails = res;
     }, err => {
         console.log('err', err);
@@ -44,8 +47,6 @@ export class JobDetailsComponent implements OnInit {
   }
 
   submitBid = (bidForms) => {
-
-    console.log('job details', this.jobDetails);
     bidForms.jobId = this.jobDetails.id;
     this.feather.create('bids', {
       ...bidForms

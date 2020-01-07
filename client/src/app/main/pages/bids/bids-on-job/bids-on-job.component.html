@@ -1,4 +1,3 @@
-<!-- <p>bids-on-job works!</p> -->
 <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'50'}">
 
     <div class="course web card-head" *ngFor="let bid of bidsList" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33"
@@ -20,7 +19,8 @@
 
             <div class="content" fxLayout="column" fxFlex="1 1 auto">
                 <div class="pb-16 bottom-line" fxLayout="row" fxLayoutAlign="start center">
-                    <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg">
+                    <img *ngIf="bid.bidder.profilePic === null" class="avatar mr-0 mr-sm-16" src="assets/images/avatars/profile.jpg">
+                    <img *ngIf="bid.bidder.profilePic !== null" class="avatar mr-0 mr-sm-16" src='{{API}}{{bid.bidder && bid.bidder.profilePic}}'>
                     <div class="h2 secondary-text bidder-name">{{bid.bidder && bid.bidder.name}}</div>
                     <div class="h2 secondary-text bidder-email">{{bid.bidder && bid.bidder.email}}</div>
                 </div> <br>

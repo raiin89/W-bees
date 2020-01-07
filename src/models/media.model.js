@@ -5,13 +5,24 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const conversations = sequelizeClient.define('conversations', {
-    roomId: {
+  const media = sequelizeClient.define('media', {
+    name: {
       type: DataTypes.STRING,
-      unique: true,
+      allowNull: false
+    },
+    contentType: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    originalName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    url : {
+      type: DataTypes.STRING,
       allowNull: false
     }
-  }, {
+  },{
     timestamps: true,
     paranoid: true,
     hooks: {
@@ -22,18 +33,14 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  conversations.associate = function (models) {
+  media.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    conversations.belongsTo(models.users, {
-      foreignKey: "senderId",
-      onDelete: "CASCADE"
-    });
-    conversations.belongsTo(models.users, {
-      foreignKey: "receiverId",
-      onDelete: "CASCADE"
-    });
+    media.belongsTo(models.users, {
+      foreignKey: 'createdBy',
+      onDelete: 'CASCADE'
+    })
   };
 
-  return conversations;
+  return media;
 };

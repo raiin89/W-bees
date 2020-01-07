@@ -10,6 +10,9 @@ export class ChatPanelService
     contacts: any[];
     chats: any[];
     user: any;
+    wbUser: any;
+
+    wbContacts: any[];
 
     /**
      * Constructor
@@ -49,6 +52,17 @@ export class ChatPanelService
                 },
                 reject
             );
+        });
+    }
+
+    wbLoadContacts = ($userId) => {
+        return this.feathers.find('conversations', {
+            id: $userId
+        }).then(res => {
+            this.wbContacts = res;
+            console.log('chat-service res: ', res);
+        }, err => {
+            console.log('chat-service err: ', err);
         });
     }
 

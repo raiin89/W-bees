@@ -4,16 +4,16 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
   return async context => {
-    let result = []
+    let result = [];
     result = await Promise.all(
-      context.result.map(async bid => {
-        let bidder = await context.app.service('users').get(bid.createdBy)
-        bid.bidder = {
-                      name: bidder.username,
-                      email: bidder.email,
-                      profilePic: bidder.profilePic,
+      context.result.data.map(async user => {
+        let details = await context.app.service('users').get(user.senderId)
+        user.details = {
+                      name: details.username,
+                      email: details.email,
+                      profilePic: details.profilePic,
                     }
-        return bid
+        return user
       })
     )
     context.result = result

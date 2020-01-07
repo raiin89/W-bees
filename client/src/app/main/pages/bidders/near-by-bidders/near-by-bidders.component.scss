@@ -107,6 +107,9 @@
 }
 
 .example-header-image {
-    background-image: url("assets/images/avatars/joyce.jpg");
+    // background-image: url("assets/images/avatars/joyce.jpg");
     background-size: cover;
+    height: 50px;
+    width: 50px;
+
 }

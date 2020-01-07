@@ -46,6 +46,9 @@ module.exports = function (app) {
       },
       resetExpires: {
         type: DataTypes.DATE
+      },
+      profilePic: {
+        type: DataTypes.STRING
       }
     },
     {

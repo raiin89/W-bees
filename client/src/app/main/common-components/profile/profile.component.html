@@ -7,9 +7,12 @@
         <div class="user-info" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
             fxLayoutAlign.gt-sm="start center">
             <span class="span-ico">
-                    <img class="profile-image avatar huge" src="assets/images/avatars/Velazquez.jpg"
-                    [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}" (click)="uploadProfilePic()">
-                <mat-icon class="edit-ico" (click)="uploadProfilePic()">edit</mat-icon>
+                    <input hidden type="file" #uploader
+                   (change)="uploadFile($event)"/>
+                    <img class="profile-image avatar huge" src="{{profileImageSrc}}"
+                    [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon class="edit-ico" (click)="uploader.click()">edit</mat-icon>
+                    <!-- <mat-icon *ngIf="editPic" class="edit-ico" (click)="uploadProfilePic()">done_outline</mat-icon> -->
             </span>
             <div class="name" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                 <div *ngIf="!editProfile">{{username }}</div>

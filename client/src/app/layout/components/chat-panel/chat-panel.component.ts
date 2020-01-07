@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { ChatPanelService } from 'app/layout/components/chat-panel/chat-panel.service';
-
+import { environment } from 'environments/environment';
 @Component({
     selector     : 'chat-panel',
     templateUrl  : './chat-panel.component.html',
@@ -17,11 +17,18 @@ import { ChatPanelService } from 'app/layout/components/chat-panel/chat-panel.se
 })
 export class ChatPanelComponent implements OnInit, AfterViewInit, OnDestroy
 {
+    API = environment.API;
+    dummyPic = 'assets/images/avatars/profile.jpg';
     contacts: any[];
     chat: any;
     selectedContact: any;
     sidebarFolded: boolean;
     user: any;
+
+    wbContacts: any[];
+    wbChat: any;
+    wbUser: any;
+    wbUserId: any;
 
     @ViewChild('replyForm', {static: false})
     private _replyForm: NgForm;
@@ -66,6 +73,14 @@ export class ChatPanelComponent implements OnInit, AfterViewInit, OnDestroy
      */
     ngOnInit(): void
     {
+        // get userId from localStorage
+        if (localStorage.getItem('user-details') !== undefined){
+            this.wbUserId = JSON.parse(localStorage.getItem('user-details')).id;
+            this._chatPanelService.wbLoadContacts(this.wbUserId).then(() => {
+                this.wbContacts = this._chatPanelService.wbContacts;
+                console.log('wbContacts component: ', this.wbContacts);
+            });
+        }
         // Load the contacts
         this._chatPanelService.loadContacts().then(() => {
 
@@ -201,6 +216,7 @@ export class ChatPanelComponent implements OnInit, AfterViewInit, OnDestroy
      */
     toggleChat(contact): void
     {
+        console.log('contact', contact);
         // If the contact equals to the selectedContact,
         // that means we will deselect the contact and
         // unload the chat

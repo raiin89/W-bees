@@ -48,7 +48,9 @@
 
                 <mat-card class="content-card" *ngFor="let bidder of bidders">
                     <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
+                        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                        <img mat-card-avatar class="example-header-image" *ngIf="bidder.profilePic === null" src="assets/images/avatars/profile.jpg">
+                        <img mat-card-avatar class="example-header-image" *ngIf="bidder.profilePic !== null"src='{{API}}{{bidder.profilePic}}'>
                         <mat-card-title>{{bidder.username}}</mat-card-title>
                         <mat-card-subtitle>{{bidder.email}}</mat-card-subtitle>
                     </mat-card-header>
@@ -65,7 +67,7 @@
                     </mat-card-content> -->
                     <mat-card-actions>
                         <div class="card-bottom">
-                            <button mat-raised-button color="primary">Connect</button>
+                            <button mat-raised-button color="primary" (click)="connectToBidder(bidder.id)">Connect</button>
                             <div>
                                 <mat-icon>location_on</mat-icon>{{(bidder.distance / 1000).toFixed(2)}} KM
                             </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Feathers } from 'feather.service';
 import { fuseAnimations } from '@fuse/animations';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'app-bids-on-job',
@@ -10,6 +11,8 @@ import { fuseAnimations } from '@fuse/animations';
     animations: fuseAnimations
 })
 export class BidsOnJobComponent implements OnInit {
+
+    API = environment.API;
 
     jobId: any;
     bidsList: any;
@@ -21,7 +24,6 @@ export class BidsOnJobComponent implements OnInit {
 
     ngOnInit(): void {
         this.jobId = this._Activatedroute.snapshot.paramMap.get('id');
-        console.log('jobId', this.jobId);
         this.getBidsOnJob();
     }
 
@@ -31,7 +33,6 @@ export class BidsOnJobComponent implements OnInit {
                 jobId: this.jobId
             }
         }).then(res => {
-            console.log('res', res);
             this.bidsList = res;
         }, err => {
             console.log('err', err);
@@ -39,7 +40,6 @@ export class BidsOnJobComponent implements OnInit {
     }
 
     acceptBid = (bidId: any) => {
-        console.log('acceptBid BidId', bidId);
         this.feather.patch('bids', {
             id: bidId,
             updates: {
@@ -47,7 +47,6 @@ export class BidsOnJobComponent implements OnInit {
             }
         })
         .then(res => {
-            console.log('res', res);
             this.getBidsOnJob();
         }, err => {
             console.log('err', err);
@@ -55,7 +54,6 @@ export class BidsOnJobComponent implements OnInit {
     }
 
     declineBid = (bidId: any) => {
-        console.log('declineBid BidId', bidId);
         this.feather.patch('bids', {
             id: bidId,
             updates: {
@@ -63,7 +61,6 @@ export class BidsOnJobComponent implements OnInit {
             }
         })
         .then(res => {
-            console.log('res', res);
             this.getBidsOnJob();
         }, err => {
             console.log('err', err);

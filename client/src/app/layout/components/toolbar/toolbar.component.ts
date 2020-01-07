@@ -15,6 +15,7 @@ import { FuseNavigationService } from '@fuse/components/navigation/navigation.se
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'toolbar',
@@ -32,6 +33,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     selectedLanguage: any;
     userStatusOptions: any[];
     userData: any;
+
+    profilePic: any;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -145,6 +148,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         // get user details from local storage
         if (localStorage.getItem('user-details')) {
             this.userData = JSON.parse(localStorage.getItem('user-details'));
+            if (this.userData.profilePic === null){
+                this.profilePic = 'assets/images/avatars/profile.jpg';
+            } else {
+                this.profilePic = environment.API + this.userData.profilePic;
+            }
             // console.log('user-details toolbar', this.userData.id);
         }
 

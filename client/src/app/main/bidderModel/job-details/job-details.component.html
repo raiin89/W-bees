@@ -47,6 +47,7 @@
                             <div class="section pb-48">
 
                                 <div class="pb-16 bottom-line" fxLayout="row" fxLayoutAlign="start center">
+                                    <!-- <img class="avatar mr-0 mr-sm-16" *ngIf="jobDetails" src="assets/images/avatars/Velazquez.jpg"> -->
                                     <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg">
                                     <div class="h2 secondary-text">Customer</div>
                                 </div> <br>
@@ -57,7 +58,7 @@
 
                                 <div fxLayout="row" fxLayoutAlign="start start">
                                     <div class="note">
-                                        {{jobDetails &&jobDetails.description}}
+                                        {{jobDetails && jobDetails.description}}
                                     </div>
                                 </div>
 

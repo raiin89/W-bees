@@ -1,13 +1,13 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
-const attachDetailsInChatContactList = require('../../hooks/attach-details-in-chat-contact-list');
+const profileImageUpload = require('../../hooks/profile-image-upload');
 
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
     find: [],
     get: [],
-    create: [],
+    create: [profileImageUpload()],
     update: [],
     patch: [],
     remove: []
@@ -15,7 +15,7 @@ module.exports = {
 
   after: {
     all: [],
-    find: [attachDetailsInChatContactList()],
+    find: [],
     get: [],
     create: [],
     update: [],
