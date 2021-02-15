@@ -1,6 +1,7 @@
 # w-bees
 
-> Backend for W-bees POC
+Community-based web application, allowing “service buyers” and “service sellers” to create accounts, authenticate, authorise, communicate, create orders, post tasks, bid on tasks, make payments, review users etc.
+
 
 
 ## Getting Started
